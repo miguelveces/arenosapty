@@ -4,32 +4,43 @@
         <title>Pruebas</title>
     </head>
     <body>
+        
+        <form name="frmLogin" action="scripts/conexion/login.php" method="POST">            
+             <h2 id="error"> </h2>
+                    <p id="cinta"> <strong>Ingresar</strong></p>   		          
+                      <div data-role="fieldcontain" id="login">
+
+                              <label for="user">Usuario:</label>
+                              <input type="text" name="user" id="user" value="" />
+                              <label for="pwd" >Contraseña:</label>
+                              <input type="password" name="pwd" id="pwd" value="" placeholder="contraseña" />                                                
+                              <p id="enviar">
+                                <input type="submit" name ="iniciar" value="Enviar" data-theme="b"/>                                
+                       </div>  
+              </form>  
         <?php
-require_once('clases/seguridad/encriptar.php');
+require_once('clases/conexion_bd/conexion.php');
        //para encriptar se hace asi : 
        //se instancia la clase encriptar
-        $encripta = new encriptar();
-        //se llama al metodo encriptar_dato y se le envian dos parametros
-        //el primer parametro es lo que se desea encriptar osea la cadena
-        //el segundo parametro es el key de encriptacion es una clave para 
-        //poder desencriptar posteriormente
-        //es importante muy importante no cambiar este key porque eso ocacionaria que no se puedan
-        //desencriptar los datos despues.
-        //yo are una clase que arme este key asi no lo dejaremos como un valor fijo
-        $resultado_cadena = $encripta->encriptar_dato("Miguel ariel veces", "este es mi key");
-        //se muestra el resultado
-        echo 'encriptada: '.$resultado_cadena;
-        //para desencriptar se usa de la siguiente manera
-        //se instancia la clase desencriptar
-        require_once('clases/seguridad/desencriptar.php');
-        $desencripta = new desencriptar();
-        //se invoca el metodo desentriptar_dato y se le envian dos parametros
-        //el primero es la cadena encriptada 
-        // el segundo es el key de encriptacion debe ser exactamente el mismo que se uso para encriptarla
-        $resultado_cadena_des = $desencripta->desencriptar_dato("xs7a6cqMhdSS1s6Mi9veyNjn", "este es mi key");
-       //el metodo devuelve la cadena desencriptada
-        echo '<br>';
-        echo 'desencriptada: '.$resultado_cadena_des;
+        $conectado = new conexion();
+        
+        
+        $con_res = $conectado->conectar();
+         
+        if (strcmp ($con_res, "ok" ) == 0 )
+         {
+          echo 'Conexion exitosa todo bien';
+         }
+         else{
+             echo 'Algo anda mal';
+         }
+      
+         
+         //para enviar correos
+//         require_once ('clases/mensajeria/envia_correo.php');
+//         
+//         $enviar_correo = new envia_correo();
+//         $enviar_correo->enviarCorreo();
         ?>
     </body>
 </html>

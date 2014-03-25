@@ -1,4 +1,3 @@
-
 <?php
 
 /**
@@ -9,7 +8,7 @@
  */
 class desencriptar {
 
-    function desencriptar_dato($valor_encriptado, $key) {
+    public function desencriptar_dato($valor_encriptado, $key) {
         $result = '';
         $valor_encriptado = base64_decode($valor_encriptado);
         for ($i = 0; $i < strlen($valor_encriptado); $i++) {
