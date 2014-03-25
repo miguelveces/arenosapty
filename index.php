@@ -4,43 +4,24 @@
         <title>Pruebas</title>
     </head>
     <body>
-        
-        <form name="frmLogin" action="scripts/conexion/login.php" method="POST">            
-             <h2 id="error"> </h2>
-                    <p id="cinta"> <strong>Ingresar</strong></p>   		          
-                      <div data-role="fieldcontain" id="login">
+    <?php
+//creamos la sesion
+        session_start();
 
-                              <label for="user">Usuario:</label>
-                              <input type="text" name="user" id="user" value="" />
-                              <label for="pwd" >Contraseña:</label>
-                              <input type="password" name="pwd" id="pwd" value="" placeholder="contraseña" />                                                
-                              <p id="enviar">
-                                <input type="submit" name ="iniciar" value="Enviar" data-theme="b"/>                                
-                       </div>  
-              </form>  
-        <?php
-require_once('clases/conexion_bd/conexion.php');
-       //para encriptar se hace asi : 
-       //se instancia la clase encriptar
-        $conectado = new conexion();
-        
-        
-        $con_res = $conectado->conectar();
-         
-        if (strcmp ($con_res, "ok" ) == 0 )
-         {
-          echo 'Conexion exitosa todo bien';
-         }
-         else{
-             echo 'Algo anda mal';
-         }
+//validamos si se ha hecho o no el inicio de sesion correctamente
+//si no se ha hecho la sesion nos regresará a login.php
+//esta instruccion debe ir al iniscio de cada pagina
+        if (!isset($_SESSION['usuarios'])) {
+            header('Location: login.php');
+            exit();
+        }
       
-         
-         //para enviar correos
-//         require_once ('clases/mensajeria/envia_correo.php');
-//         
-//         $enviar_correo = new envia_correo();
-//         $enviar_correo->enviarCorreo();
         ?>
+        <form name="frmLogin" action="clases/seguridad/logout.php" method="POST">            
+            <h2 id="saludo"> Hola Loteria</h2>
+          
+            <input type="submit" name ="iniciar" value="Cerrar Sesion" data-theme="b" />                                
+            
+        </form> 
     </body>
 </html>
