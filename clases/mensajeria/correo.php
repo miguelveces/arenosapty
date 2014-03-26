@@ -1,6 +1,6 @@
 <?php
 
-require_once('lib_php/class.phpmailer.php');
+require_once('../../lib_php/class.phpmailer.php');
 $mail = new PHPMailer();
 $mail->IsSMTP();
 $mail->Host = "localhost";
