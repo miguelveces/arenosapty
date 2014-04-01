@@ -44,10 +44,10 @@ class valida_usuario {
 //Validamos si el nombre del administrador existe en la base de datos o es correcto
             if ($row = mysql_fetch_array($result)) {
 //Si el usuario es correcto ahora validamos su contraseña
-                    $_SESSION['cedula'] = $row["cedula"];
-                    $_SESSION['nombre'] = $row["nombre"];
-                    echo $_SESSION['cedula'];
-                    echo  $_SESSION['nombre'];
+//                    $_SESSION['cedula'] = $row["cedula"];
+//                    $_SESSION['nombre'] = $row["nombre"];
+//                    echo $_SESSION['cedula'];
+//                    echo  $_SESSION['nombre'];
                 if ($row["contrasenia"] == $pwd) {
                     //Creamos sesión
                     session_start();
@@ -55,8 +55,8 @@ class valida_usuario {
                     $_SESSION['usuarios'] = $this->usuario;
                     $_SESSION['cedula'] = $row["cedula"];
                     $_SESSION['nombre'] = $row["nombre"];
-                    echo "usuario " . $_SESSION['cedula'] . "<br/>";
-                    echo  "usuario " . $_SESSION['nombre']. "<br/>";
+                   // echo "usuario " . $_SESSION['cedula'] . "<br/>";
+                  //  echo  "usuario " . $_SESSION['nombre']. "<br/>";
                     
                     //Redireccionamos a la pagina: index.php
                     header("Location: ../../index.php");

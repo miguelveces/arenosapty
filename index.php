@@ -12,7 +12,7 @@
 //si no se ha hecho la sesion nos regresará a login.php
 //esta instruccion debe ir al iniscio de cada pagina
         if (!isset($_SESSION['usuarios'])) {
-            header('Location: login.php');
+            header('Location: login.php');    
             exit();
         }
         ?>
