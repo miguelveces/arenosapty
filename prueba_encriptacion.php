@@ -16,7 +16,7 @@ require_once('clases/seguridad/encriptar.php');
         //es importante muy importante no cambiar este key porque eso ocacionaria que no se puedan
         //desencriptar los datos despues.
         //yo are una clase que arme este key asi no lo dejaremos como un valor fijo
-        $resultado_cadena = $encripta->encriptar_dato("veces", "ptylotodeveloper");
+        $resultado_cadena = $encripta->encriptar_dato("12345", "ptylotodeveloper");
         //se muestra el resultado
         echo 'encriptada: '.$resultado_cadena;
         //para desencriptar se usa de la siguiente manera
@@ -26,7 +26,7 @@ require_once('clases/seguridad/encriptar.php');
         //se invoca el metodo desentriptar_dato y se le envian dos parametros
         //el primero es la cadena encriptada 
         // el segundo es el key de encriptacion debe ser exactamente el mismo que se uso para encriptarla
-        $resultado_cadena_des = $desencripta->desencriptar_dato("xs7a6cqMhdSS1s6Mi9veyNjn", "este es mi key");
+        $resultado_cadena_des = $desencripta->desencriptar_dato("o6KnraGl", "ptylotodeveloper");
        //el metodo devuelve la cadena desencriptada
         echo '<br>';
         echo 'desencriptada: '.$resultado_cadena_des;

@@ -5,13 +5,15 @@
  *
  * @author JJD
  */
- //Se instancia la clase.
-        $insertar = new registrar_user;
-        $insertar->insertar();
+//Se instancia la clase.
+$insertar = new registrar_user;
+$insertar->insertar();
+
 class registrar_user {
+
 //costructor de la clase por si deseas inicailizar variables
     public function __construct() {
-       
+        
     }
 
     public function insertar() {
@@ -35,7 +37,7 @@ class registrar_user {
             /* $date = new DateTime();
               //echo $date->format('Y-m-d');
               echo $date->format('Y-m-d H:i:s'); */
-            $date = DateTime('Y-m-d H:i:s');
+            $date = date('Y-m-d H:i:s');
 
             $fecha_actual = date("Y-m-d");
 
@@ -45,11 +47,15 @@ class registrar_user {
             if ($existe = @mysql_fetch_object($query)) {
                 echo 'El usuario ' . $correo_electronico . ' ya existe.';
             } else {
-                $meter = @mysql_query('INSERT INTO usuarios (nombre,apellido,telefono,cedula,fecha_registro, correo_electronico, correo_electronico2, contrasenia) values ("' . mysql_real_escape_string($nombre) . '","' . mysql_real_escape_string($apellido) . '","' . mysql_real_escape_string($telefono) . '","' . mysql_real_escape_string($fecha_actual) . '","' . mysql_real_escape_string($date) . '", "' . mysql_real_escape_string($correo_electronico) . '", "' . mysql_real_escape_string($correo_electronico2) . '", "' . mysql_real_escape_string($contrasenia) . '")');
+                $meter = @mysql_query('INSERT INTO usuarios (nombre,apellido,telefono,cedula,fecha_registro, correo_electronico, correo_electronico2, contrasenia) values ("' .
+                                mysql_real_escape_string($nombre) . '","' . mysql_real_escape_string($apellido) .
+                                '","' . mysql_real_escape_string($telefono) . '","' . mysql_real_escape_string($fecha_actual) .
+                                '","' . mysql_real_escape_string($date) . '", "' . mysql_real_escape_string($correo_electronico) .
+                                '", "' . mysql_real_escape_string($correo_electronico2) . '", "' . mysql_real_escape_string($contrasenia) . '")');
                 if ($meter) {
-                    echo '<script>alert("BIENVENIDO, se ha registrado!");window.location="/ptyloto/index.php"</script>';
+                    echo '<script>alert("BIENVENIDO, se ha registrado!");window.location="../../index.php"</script>';
                 } else {
-                    echo 'Hubo un error en el registro.';
+                    echo '<script>alert("Error al insertar!");window.location="../../registro_usuario.php"</script>';
 //echo 'fecha'.$date.'';  
                 }
             }

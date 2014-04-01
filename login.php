@@ -15,7 +15,12 @@
                 <label for="pwd" >Contraseña:</label>
                 <input type="password" name="pass" id="pwd" value="" placeholder="contraseña" />                                                
                 <p id="enviar">
-                    <input type="submit" name ="iniciar" value="Enviar" data-theme="b"/>                                
+                    <input type="submit" name ="iniciar" value="Enviar" data-theme="b"/>
+                    <br/>
+                    <a href="registro_usuario.php">registrarse</a>
+                    <br/>
+                    <a href="recupera_pwd.php">Olvido Contraseña</a>
+                    <br/>
             </div>  
         </form>  
 

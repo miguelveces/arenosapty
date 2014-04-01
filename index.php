@@ -15,13 +15,16 @@
             header('Location: login.php');
             exit();
         }
-      
         ?>
         <form name="frmLogin" action="clases/seguridad/logout.php" method="POST">            
             <h2 id="saludo"> Hola Loteria</h2>
           
-            <input type="submit" name ="iniciar" value="Cerrar Sesion" data-theme="b" />                                
-            
+            <input type="submit" name ="iniciar" value="Cerrar Sesion" data-theme="b" />
+            <br/>
+            <a href="Registro_Tarjeta.php">Registrar tarjeta</a>
+            <br/>
+            <a href="Registrar_numero.php">Comprar Numero</a>
+            <br/>
         </form> 
     </body>
 </html>

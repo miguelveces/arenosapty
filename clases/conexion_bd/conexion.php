@@ -17,7 +17,7 @@ class conexion {
          $db_host = "localhost";
      $db_usuario = "root";
      $db_password = "";
-     $db_nombre = "ptyloto";
+     $db_nombre = "ptyloto2";
 
         $link = mysql_connect($db_host, $db_usuario, $db_password);
         if (!$link) {
