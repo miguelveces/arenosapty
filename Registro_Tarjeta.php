@@ -37,7 +37,7 @@
                     <table border="0">
                         <tr>
                             <td>
-                                <form >            
+<!--                                <form >            -->
                                     <input  class="form-btn" name="crear" type="submit" value="Crear" onclick="ver();" />
                                     <?php
 
@@ -47,7 +47,7 @@
                                         $consultaTar2->valida_tarjetas_usuario();
                                     }
                                     ?>
-                                </form>
+<!--                                </form>-->
                             </td>
                             <td>
                                 <input class="form-btn" name="limpiar" type="reset" value="Limpiar" />

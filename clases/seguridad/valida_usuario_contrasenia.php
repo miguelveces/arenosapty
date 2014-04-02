@@ -8,7 +8,7 @@
  //Se instancia la clase
  $mains = new valida_usuario();
  $mains->validar();
-class valida_usuario {
+class valida_usuario_contrasenia {
 
     private $usuario; //$_POST["admin"];
     private $password; //$_POST["password_usuario"];
@@ -23,10 +23,7 @@ class valida_usuario {
 //    }
 
     public function validar() {
-      
-        
-        $this->usuario = $_POST["user"];
-        $this->password = $_POST["pass"];
+        $this->usuario = $_POST["user"];        
         require_once('../conexion_bd/conexion.php');        
         require_once('encriptar.php');
         $encripta = new encriptar();
@@ -50,29 +47,24 @@ class valida_usuario {
 //                    $_SESSION['nombre'] = $row["nombre"];
 //                    echo $_SESSION['cedula'];
 //                    echo  $_SESSION['nombre'];
-                if ($row["contrasenia"] == $pwd) {
+                if ($row["correo_electronico"] != null) {
                     //Creamos sesión
                     session_start();
                     //Almacenamos el nombre de usuario en una variable de sesión usuario
-                    $_SESSION['usuarios'] = $this->usuario;
-                    $_SESSION['cedula'] = $row["cedula"];
-                    $_SESSION['nombre'] = $row["nombre"];
-                   // echo "usuario " . $_SESSION['cedula'] . "<br/>";
-                  //  echo  "usuario " . $_SESSION['nombre']. "<br/>";
-                    
-                    //Redireccionamos a la pagina: index.php
-                    header("Location: ../../index.php");
+                    require_once '../mensajeria/envia_correo.php';
+                    $correo = new envia_correo();
+                    $correo->enviar_Correo_confirmacion($row["correo_electronico"], "tu contraseña es miguel veces");
                 } else {
                     //En caso que la contraseña sea incorrecta enviamos un msj y redireccionamos a login.php
-                    echo 'La Contraseña es incorrecta';
+                    echo 'El Correo es incorrecto';
 
-                    header("Location: ../../login.php");
+                    header("Location: ../../index.php");
                 }
             } else {
                 //en caso que el nombre de administrador es incorrecto enviamos un msj y redireccionamos a login.php
                 echo 'El usuario es Incorrecto';
 
-                header("Location: ../../login.php");
+                header("Location: ../../index.php");
             }
 
 //Mysql_free_result() se usa para liberar la memoria empleada al realizar una consulta

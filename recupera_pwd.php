@@ -5,7 +5,7 @@
     </head>
     <body>
 
-       <form name="frmLogin" action="clases/seguridad/valida_usuario.php" method="POST">            
+       <form name="frmLogin" action="clases/seguridad/valida_usuario_contrasenia.php" method="POST">            
             <h2 id="error"> </h2>
             <p id="cinta"> <strong>Recupera Contraseña</strong></p>   		          
             <div data-role="fieldcontain" id="login">
