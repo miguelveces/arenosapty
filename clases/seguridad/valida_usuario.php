@@ -41,8 +41,8 @@ class valida_usuario {
 
         if (strcmp($con_res, "ok") == 0) {
             //echo 'Conexion exitosa todo bien';
-
-            $result = mysql_query("SELECT * FROM usuarios WHERE correo_electronico = '" . $this->usuario . "'");
+            $consulta = "SELECT * FROM usuarios WHERE correo_electronico = '" . $this->usuario . "'";
+            $result = mysql_query($consulta);
 //Validamos si el nombre del administrador existe en la base de datos o es correcto
             if ($row = mysql_fetch_array($result)) {
 //Si el usuario es correcto ahora validamos su contraseña
@@ -57,6 +57,7 @@ class valida_usuario {
                     $_SESSION['usuarios'] = $this->usuario;
                     $_SESSION['cedula'] = $row["cedula"];
                     $_SESSION['nombre'] = $row["nombre"];
+                    $_SESSION['id'] = $row["id_usuario"];
                    // echo "usuario " . $_SESSION['cedula'] . "<br/>";
                   //  echo  "usuario " . $_SESSION['nombre']. "<br/>";
                     
@@ -64,15 +65,15 @@ class valida_usuario {
                     header("Location: ../../index.php");
                 } else {
                     //En caso que la contraseña sea incorrecta enviamos un msj y redireccionamos a login.php
-                    echo 'La Contraseña es incorrecta';
+                    echo 'La Contraseña es incorrecta '.$pwd;
 
-                    header("Location: ../../login.php");
+                   // header("Location: ../../login.php");
                 }
             } else {
                 //en caso que el nombre de administrador es incorrecto enviamos un msj y redireccionamos a login.php
-                echo 'El usuario es Incorrecto';
+                echo 'El usuario es Incorrecto '.$consulta;
 
-                header("Location: ../../login.php");
+                //header("Location: ../../login.php");
             }
 
 //Mysql_free_result() se usa para liberar la memoria empleada al realizar una consulta

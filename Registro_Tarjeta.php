@@ -17,37 +17,30 @@
             header('Location: login.php');
             exit();
         }
-       
         ?>
         <div align="center"> <img src="imagenes/logo.jpg" /> 
         </div>
         <h2>Registro de Tarjetas</h2>
         <div class="group">         
             <div class="group2">
-                <form method= "post" action="clases/formularios/verifica_e_InsertaTarjeta.php" >
+                <form method= "post" action="" >
                     <label for="nombre">Nombre Cliente<span>(requerido)</span></label>
                     <!-- Aqui debe venir ya de un post de la base de datos el nombre -->
                     <input type="text" name="nombre" class="form-input" readonly=”readonly” value="<?php echo $_SESSION['usuarios'] ?>">	
 
-                    <label> No. Tarjeta </label> <input type="int" name="tarjeta" id="notarje" class="form-input-corto" required/>
-                    <label> Cod. Verificado </label><input type="int" name="codverifi" class="form-input-corto" required/> 			  
+                     <label> No. Tarjeta </label> <input type="int" name="tarjeta" id="notarje" maxlength="10" size="10" class="form-input-corto" required/>
+                    <label> Cod. Verificado </label><input type="int" name="codverifi" maxlength="5" size="5" class="form-input-corto" required/> 			  
 
                     <br>
 
                     <table border="0">
                         <tr>
                             <td>
-<!--                                <form >            -->
-                                    <input  class="form-btn" name="crear" type="submit" value="Crear" onclick="ver();" />
-                                    <?php
+                                <!--                                <form >            -->
+                                <input  class="form-btn" name="crear" type="submit" value="Crear" />
 
-                                    function ver() {
-                                        require_once 'clases/formularios/verifica_e_InsertaTarjeta.php';
-                                        $consultaTar2 = new verifica_e_InsertaTarjeta();
-                                        $consultaTar2->valida_tarjetas_usuario();
-                                    }
-                                    ?>
-<!--                                </form>-->
+
+                                <!--                                </form>-->
                             </td>
                             <td>
                                 <input class="form-btn" name="limpiar" type="reset" value="Limpiar" />
@@ -61,14 +54,28 @@
 
                         </tr>
                     </table>	
+
                 </form>			
-            </div>                     
+            </div> 
+
         </div>
-        <br><?php
-                                    include('clases/formularios/consultandoTarjetas.php');
-                                    $consultaTar = new consultandoTarjetas();
-                                    $consultaTar->muestra_tarjetas_usuario();
-                                    ?>
+        <?php
+
+        if (isset($_POST['crear'])) {
+            require_once './clases/formularios/verifica_e_InsertaTarjeta.php';
+            $consultaTar2 = new verifica_e_InsertaTarjeta();
+            $consultaTar2->valida_tarjetas_usuario($_POST['tarjeta'], $_POST['codverifi']);
+            echo '<div>' . $consultaTar2->mensaje . '</div>';
+        }
+        ?>
+
+        <br/>
+        <br>
+        <?php
+        include('clases/formularios/consultandoTarjetas.php');
+        $consultaTar = new consultandoTarjetas();
+        $consultaTar->muestra_tarjetas_usuario();
+        ?>
     </body>
 
 

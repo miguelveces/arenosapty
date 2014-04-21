@@ -16,7 +16,7 @@ $consultaTar2->valida_tarjetas_usuario();
 class lista_tarjetas_de_usuarios {
 
     //put your code here
-    private $cod_tarjeta;
+    private $cod_tarjeta="veces";
 
     public function valida_tarjetas_usuario() {
         require_once('../conexion_bd/conexion.php');
@@ -61,7 +61,7 @@ class lista_tarjetas_de_usuarios {
         $conectado->desconectar();
     }
 
-    
+   
     
     
 }

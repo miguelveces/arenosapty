@@ -14,10 +14,10 @@ class conexion {
 //    private $conexion;
 
     public function conectar() {
-         $db_host = "localhost";
+     $db_host = "localhost";
      $db_usuario = "root";
      $db_password = "";
-     $db_nombre = "ptyloto2";
+     $db_nombre = "ptyloto";
 
         $link = mysql_connect($db_host, $db_usuario, $db_password);
         if (!$link) {
@@ -35,7 +35,6 @@ class conexion {
         }
         return $resultado;
     }
-
     public function desconectar() {
         @mysql_close($conexion);
     }
