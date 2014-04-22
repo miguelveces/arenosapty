@@ -24,7 +24,7 @@ class valida_usuario {
 
     public function validar() {
       
-        
+        require_once('../procesos/auditoria.php');
         $this->usuario = $_POST["user"];
         $this->password = $_POST["pass"];
         require_once('../conexion_bd/conexion.php');        
@@ -61,18 +61,28 @@ class valida_usuario {
                    // echo "usuario " . $_SESSION['cedula'] . "<br/>";
                   //  echo  "usuario " . $_SESSION['nombre']. "<br/>";
                     
+                    
+                    
+                    $auditar = new auditoria();
+                    $auditar->insertar_auditoria($this->usuario, 
+                            "login", "usuarios", "Acaba de inisiar sescion");
                     //Redireccionamos a la pagina: index.php
                     header("Location: ../../index.php");
                 } else {
                     //En caso que la contraseña sea incorrecta enviamos un msj y redireccionamos a login.php
-                    echo 'La Contraseña es incorrecta '.$pwd;
-
+                    echo 'La Contraseña es incorrecta ';
+                    
+                    $auditar = new auditoria();
+                    $auditar->insertar_auditoria("desconocido", 
+                            "login", "usuarios", "La Contraseña es incorrecta");
                    // header("Location: ../../login.php");
                 }
             } else {
                 //en caso que el nombre de administrador es incorrecto enviamos un msj y redireccionamos a login.php
-                echo 'El usuario es Incorrecto '.$consulta;
-
+                echo 'El usuario es Incorrecto ';
+                    $auditar = new auditoria();
+                    $auditar->insertar_auditoria("desconocido", 
+                            "login", "usuarios", "El usuario es Incorrecto");
                 //header("Location: ../../login.php");
             }
 
@@ -86,6 +96,9 @@ class valida_usuario {
             $conectado->desconectar();
         } else {
             echo 'Algo anda mal';
+            $auditar = new auditoria();
+                    $auditar->insertar_auditoria("desconocido", 
+                            "login", "usuarios", "Fallo la comexion a la base de datos");
         }
     }
 

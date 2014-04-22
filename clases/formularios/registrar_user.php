@@ -15,7 +15,12 @@ class registrar_user {
     }
 
     public function insertar() {
+        //para grabar la auditori 
+        require_once('../procesos/auditoria.php');
+         $auditar = new auditoria();
+        
         require_once('../conexion_bd/conexion.php');
+        require_once('../seguridad/encriptar.php');
 //conectar('localhost', 'root', '', 'ptyloto');
         $conectar = new conexion();
         $con_res = $conectar->conectar();
@@ -29,49 +34,19 @@ class registrar_user {
             $telefono = strip_tags($_POST['telefono']);
             $correo_electronico = strip_tags($_POST['correo_electronico']);
             $correo_electronico2 = strip_tags($_POST['correo_electronico2']);
-            $contrasenia = strip_tags(sha1($_POST['contrasenia']));
+            //$contrasenia = strip_tags(sha1($_POST['contrasenia']));            
+            $encripta = new encriptar();
+            $contrasenia = $encripta->encriptar_dato($_POST['contrasenia'], "ptylotodeveloper");
             $fecha_actual = date("Y-m-d");
-
-            /* $date = new DateTime();
-              //echo $date->format('Y-m-d');
-              echo $date->format('Y-m-d H:i:s'); */
-          //  $date = DateTime('Y-m-d H:i:s');
-
-           
-
-
-          //  $query = @mysql_query('SELECT * FROM usuarios
-                                 //  WHERE correo_electronico="' . mysql_real_escape_string($correo_electronico) .'"');
-            
-                //$queryC = @mysql_query('SELECT * FROM usuarios
-                  //                 WHERE cedula="' . mysql_real_escape_string($cedula) .'"');
-                
+         
                 $query = @mysql_query("SELECT * FROM usuarios 
                     WHERE correo_electronico = '".mysql_real_escape_string($correo_electronico)."' 
-                        OR cedula = '".mysql_real_escape_string($cedula)."'");
-            // $query = @mysql_query('SELECT * FROM usuarios WHERE correo_electronico="' . mysql_real_escape_string($correo_electronico) .'" AND cedula="' . mysql_real_escape_string($cedula) .'"');
-             //$query = @mysql_query('SELECT * FROM usuarios WHERE correo_electronico="'. mysql_real_escape_string($correo_electronico).'" AND cedula="'. mysql_real_escape_string($cedula) .'"');
-             
-            /*$query = @mysql_query('SELECT * 
-                 FROM usuarios 
-                 WHERE correo_electronico=
-                 "'.mysql_real_escape_string($correo_electronico).'"
-                 " AND cedula=
-                 "'.mysql_real_escape_string($cedula).'"');*/
-            
-            /*$consulta = sprintf("SELECT * FROM usuarios 
-                                WHERE correo_electronico='%' AND cedula='%s'",
-                                mysql_real_escape_string($correo_electronico),
-                               mysql_real_escape_string($cedula));
-            
-            // Ejecutar la consulta
-            $resultado = mysql_query($consulta);*/
-            
-            
-             
+                        OR cedula = '".mysql_real_escape_string($cedula)."'");                                    
             if ($existe = @mysql_fetch_object($query)) {
-               // echo $query;
-                echo '<div align="center"> El la cedula o el correo ya existe.  </div> <br> <br>';
+         
+                    $auditar->insertar_auditoria("desconocido", 
+                            "Consulta", "usuarios", " La cedula o el correo ya existe.");
+                echo '<div align="center"> La cedula o el correo ya existe.  </div> <br> <br>';
                 /* if ($existe = @mysql_fetch_object($queryC)) {
                 echo '<div align="center"> La cedula: ' . $cedula . 'ya existe.</div> ';
             }*/
@@ -80,8 +55,12 @@ class registrar_user {
                 $meter = @mysql_query('INSERT INTO usuarios (nombre,apellido,telefono,cedula,fecha_registro, correo_electronico, correo_electronico2, contrasenia) values ("' . mysql_real_escape_string($nombre) . '","' . mysql_real_escape_string($apellido) . '","' . mysql_real_escape_string($telefono) . '","' . mysql_real_escape_string($cedula) . '","' . mysql_real_escape_string($fecha_actual) . '", "' . mysql_real_escape_string($correo_electronico) . '", "' . mysql_real_escape_string($correo_electronico2) . '", "' . mysql_real_escape_string($contrasenia) . '")');
                 if ($meter) {
                    // echo '<script>alert("BIENVENIDO, se ha registrado!");window.location="/arenosapty-master/index.php"</script>';
-                     echo '<script>alert("BIENVENIDO, se ha registrado!");window.location="/arenosapty-master/registrar_numero.php"</script>';
+                     $auditar->insertar_auditoria("desconocido", 
+                            "Insert", "usuarios", " Se ha registrado correctamente."); 
+                   // echo '<script>alert("BIENVENIDO, se ha registrado!");window.location="/arenosapty-master/registrar_numero.php"</script>';
                 } else {
+                     $auditar->insertar_auditoria("desconocido", 
+                            "Insert", "usuarios", "Hubo un error en el registro."); 
                     echo 'Hubo un error en el registro.';
 //echo 'fecha'.$date.'';  
                 }
@@ -89,6 +68,8 @@ class registrar_user {
             mysql_free_result($query);
             $conectar->desconectar();
         } else {
+            $auditar->insertar_auditoria("desconocido", 
+                            "conexion", "Base de datos", " Ocurrio un problema al intentar conectar a la base de datos"); 
             echo 'Ocurrio un problema al intentar conectar a la base de datos';
         }
     }

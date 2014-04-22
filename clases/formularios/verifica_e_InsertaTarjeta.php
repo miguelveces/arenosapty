@@ -51,6 +51,8 @@ class verifica_e_InsertaTarjeta {
         if (strcmp($conrespuesta, "ok") == 0) {
           //  require_once '../seguridad/Busca_cedula.php';
          //   $ced = new Busca_cedula();
+            require_once('clases/procesos/auditoria.php');
+            $auditar = new auditoria();
             $this->cedula = $_SESSION['cedula']; //Cambien la forma de obtener la cedula $ced->extraer();
 
             $var2 = "SELECT codigo_targeta,codigo_verificador,cedula, registrada_sistema  FROM tarjetas_recibidas Where codigo_targeta ='" . $this->codigoTar . "' and codigo_verificador ='" . $this->codverifi . "' and cedula ='" . $this->cedula . "'";
@@ -83,6 +85,8 @@ class verifica_e_InsertaTarjeta {
                     $estaRegistra = '';  //esta variable vendra vacia si no tiene ningun registro en Nuestro Sistema
                 }
                 if ($estaRegistra == TRUE) {
+                     $auditar->insertar_auditoria($_SESSION['usuarios'], 
+             "Insert", "tarjetas_por_usuario", "Esta Tarjeta ya ha sido Registrada en Nuestro Sistema");
                   $this->mensaje= "Esta Tarjeta ya ha sido Registrada en Nuestro Sistema" ;
  //echo '<script>alert("Esta Tarjeta ya ha sido Registrada en Nuestro Sistema")</script>';
                 } else { // aqui entrara siempre y cuando esta Registrada y no se haya registrado aun osea FALSE
@@ -94,16 +98,25 @@ class verifica_e_InsertaTarjeta {
                        
                        $intro2 = @mysql_query('UPDATE tarjetas_recibidas set registrada_sistema =TRUE '
                                . 'where codigo_targeta= ' . mysql_real_escape_string($this->codigoTar) . '');
+                       $auditar->insertar_auditoria($_SESSION['usuarios'], 
+                       "Insert", "registrada_sistema", "Se actualiza el estado de la tarjeta en tarjetas recibidas");
+                       $auditar->insertar_auditoria($_SESSION['usuarios'], 
+                       "Insert", "tarjetas_por_usuario", "Tarjeta Registrada Correctamente");
                        $this->mensaje="Tarjeta Registrada Correctamente ";  
                     }
                    else {
+                       $auditar->insertar_auditoria($_SESSION['usuarios'], 
+                        "Insert", "tarjetas_por_usuario", "Ocurrio un problema con  el insert en la base de datos");
+                       
                         $this->mensaje="Ocurrio un problema con  el insert en la base de datos  ";  
                    }
                    // echo '<script>alert("Tarjeta Registrada Correctamente")</script>';
                 }
             } else {
                 //Si el codigo No existe manda mensaje Alert diciendo que este numero no esta en la base de datos.
-                 
+                  $auditar->insertar_auditoria($_SESSION['usuarios'], 
+                        "Insert", "tarjetas_por_usuario", "No Existe esta Tarjeta en nuestros Registros ...");
+                       
                 $this->mensaje="No Existe esta Tarjeta en nuestros Registros ...";
              //  $__SESSION['capitan']=$__SESSION['capitan']+$this->contador;
              
@@ -113,6 +126,9 @@ class verifica_e_InsertaTarjeta {
             }
         } else {
             //
+            $auditar->insertar_auditoria($_SESSION['usuarios'], 
+            "Conexion", "Base de datos", "No hay Conexion a la Base de Datos");
+                       
            $this->mensaje="No hay Conexion a la Base de Datos";
            // echo '<script>alert("No hay Conexion a la Base de Datos")</script>';
         }

@@ -6,6 +6,8 @@ class busca_tarjeta {
     private $usuario;
  
      function extraer_cod_tarjeta() {
+           require_once('../procesos/auditoria.php');
+         $auditar = new auditoria();
         //Creamos sesión
                     session_start();
         require_once('clases/conexion_bd/conexion.php');
@@ -20,7 +22,8 @@ class busca_tarjeta {
             $varTarjetas = "SELECT codigo_targeta,codigo_targeta  FROM tarjetas_por_usuarios a, usuarios b
                             WHERE b.correo_electronico = '" . $this->usuario . "'
                              AND a.id_fk_usuario = b.id_usuario";
-            echo $varTarjetas;
+            $auditar->insertar_auditoria($_SESSION['usuarios'], 
+                  "Consulta", "tarjetas_por_usuarios", "Consultando las tarjetas por usuario");
             $result = mysql_query($varTarjetas);
             if ($result) { 
                  $combobit = "";
@@ -31,7 +34,8 @@ class busca_tarjeta {
                
             }
         } else {
-            echo 'Algo anda mal';
+            $auditar->insertar_auditoria($_SESSION['usuarios'], 
+                  "Conexion", "Base de datos", "Problemas de conexion");
         }
 
     mysql_free_result($result);

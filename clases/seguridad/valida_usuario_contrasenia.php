@@ -23,6 +23,8 @@ class valida_usuario_contrasenia {
 //    }
 
     public function validar() {
+          require_once('../procesos/auditoria.php');
+         $auditar = new auditoria();
         $this->usuario = $_POST["user"];        
         require_once('../conexion_bd/conexion.php');        
         require_once('encriptar.php');
@@ -57,13 +59,15 @@ class valida_usuario_contrasenia {
                 } else {
                     //En caso que la contraseña sea incorrecta enviamos un msj y redireccionamos a login.php
                     echo 'El Correo es incorrecto';
-
+                        $auditar->insertar_auditoria("desconocido", 
+                            "login", "usuarios", "El Correo es incorrecto");
                     header("Location: ../../index.php");
                 }
             } else {
                 //en caso que el nombre de administrador es incorrecto enviamos un msj y redireccionamos a login.php
                 echo 'El usuario es Incorrecto';
-
+            $auditar->insertar_auditoria("descnocido", 
+             "login", "usuarios", "El usuario es Incorrecto");
                 header("Location: ../../index.php");
             }
 

@@ -19,7 +19,12 @@ class logout2 {
     public function cerrar_sesion() {
         //Crear sesión
         session_start();
-        //Vaciar sesión
+       
+        require_once('../procesos/auditoria.php');
+         $auditar = new auditoria();
+                    $auditar->insertar_auditoria($_SESSION['usuarios'], 
+                            "login", "usuarios", "El usuario acaba de cerrar sesion");
+                     //Vaciar sesión
         $_SESSION = array();
         //Destruir Sesión
         session_destroy();

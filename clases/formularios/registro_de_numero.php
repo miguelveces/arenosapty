@@ -13,13 +13,14 @@ class registro_de_numero {
 
     //costructor de la clase por si deseas inicailizar variables
     public function __construct() {
-        
+        require_once('clases/procesos/auditoria.php');
     }
 
     private $respuesta="";
 
     public function insertar($codigoTarjeta, $numero, $cantidadNumero) {
-
+        
+  $auditar = new auditoria();
         require_once('clases/conexion_bd/conexion.php');
 
         $conectar = new conexion();
@@ -39,12 +40,10 @@ class registro_de_numero {
             $query = @mysql_query("SELECT * FROM numeros_disponibles 
                     WHERE numero = '" . mysql_real_escape_string($numero) . "' 
                     AND cantidad_disponible >= '" . mysql_real_escape_string($cantidadDisponibles) . "'");
-//            echo "SELECT * FROM numeros_disponibles 
-//                    WHERE numero = '" . mysql_real_escape_string($numero) . "' 
-//                    AND cantidad_disponible >= '" . mysql_real_escape_string($cantidadDisponibles) . "'";
-            // valido si existe en el query
+        // valido si existe en el query
             if (!$existe = @mysql_fetch_object($query)) {
-                echo $query;
+                $auditar->insertar_auditoria($_SESSION['usuarios'], 
+                            "Consulta", "numeros_disponibles", "El Numero: ' . $numero . ' no esta disponible.");
                 $this->respuesta='El Numero: ' . $numero . ' no esta disponible.';
             } else {
                 // aqui valido la fecha de cierre de compra
@@ -65,37 +64,38 @@ class registro_de_numero {
                         // $meter = @mysql_query('INSERT INTO usuarios (nombre,apellido,telefono,cedula,fecha_registro, correo_electronico, correo_electronico2, contrasenia) values ("' . mysql_real_escape_string($nombre) . '","' . mysql_real_escape_string($apellido) . '","' . mysql_real_escape_string($telefono) . '","' . mysql_real_escape_string($cedula) . '","' . mysql_real_escape_string($fecha_actual) . '", "' . mysql_real_escape_string($correo_electronico) . '", "' . mysql_real_escape_string($correo_electronico2) . '", "' . mysql_real_escape_string($contrasenia) . '")');
                         /* 1er query inserta numeros disponible */ $insertNum = @mysql_query('INSERT INTO numeros_por_usuario(id_fk_targeta,id_fk_numero,cantidad,fecha_registro,fecha_sorteo)
                                                    values ("' . mysql_real_escape_string($id_tarjeta_user) . '","' . mysql_real_escape_string($numero) . '","' . mysql_real_escape_string($cantidadDisponibles) . '","' . mysql_real_escape_string($fecha_actual) . '","' . mysql_real_escape_string($fecha_actual) . '")');
-                        //echo  'INSERT INTO numeros_por_usuario(id_fk_targeta,id_fk_numero,cantidad,fecha_registro,fecha_sorteo) values ("' . mysql_real_escape_string($id_tarjeta_user) . '","' . mysql_real_escape_string($numero) . '","' . mysql_real_escape_string($cantidadDisponibles) . '","' . mysql_real_escape_string($fecha_actual) . '","' . mysql_real_escape_string($fecha_actual) . '")';
-//                    // metodos que obtienen el saldo de la tarjeta y la actualiza
-//                    $cobrar_numeros_ =  new registrarNumero();
-//                    $cobrar_numeros_->cobrar_numeros();
-//                    $restar_saldo = new Saldos_por_Tarjeta();
-//                    $restar_saldo->encuentra_saldo($codigo_tar);
-//                    $restar_saldo->Actualiza_saldo($codigo_tar, $montoTotalCompra, $saldoTarjeta);
-
+                  
                         echo $insertNum;
 
                         if ($insertNum) {
-
+                            $auditar->insertar_auditoria($_SESSION['usuarios'], 
+                            "Insert", "numeros_por_usuario", "OK, se ha registrado!");
+                
                             $this->respuesta= 'OK, se ha registrado!';
                         } else {
+                            $auditar->insertar_auditoria($_SESSION['usuarios'], 
+                            "Insert", "numeros_por_usuario", "Hubo un error en el registro.");
                             $this->respuesta= 'Hubo un error en el registro.';
                         }
                     }
                 } else {
-
+                        $auditar->insertar_auditoria($_SESSION['usuarios'], 
+                            "Insert", "numeros_por_usuario", "La hora de la venta ha sido cerrada");
                     $this->respuesta='La hora de la venta ha sido cerrada';
                 }
             }
             //aqui desconecto la conexion de la BD
             $conectar->desconectar();
         } else {
+            $auditar->insertar_auditoria($_SESSION['usuarios'], 
+                            "Insert", "numeros_por_usuario", "Ocurrio un problema al intentar conectar a la base de datos");
             $this->respuesta= 'Ocurrio un problema al intentar conectar a la base de datos';
         }
     }
 
     function restar_cantidad_numeros_disponibles() {
-
+        //require_once('../procesos/auditoria.php');
+        $auditar2 = new auditoria();
         require_once('clases/conexion_bd/conexion.php');
         $conectado = new conexion();
         $con_res = $conectado->conectar();
@@ -127,11 +127,16 @@ class registro_de_numero {
                 $conectado->desconectar();
             }
         } else {
+            $auditar2->insertar_auditoria($_SESSION['usuarios'], 
+            "Insert", "numeros_por_usuario", "Ocurrio un problema al intentar conectar a la base de datos");
+            
             echo 'Ocurrio un problema al intentar conectar a la base de datos';
         }
     }
 
     function cobrar_numeros() {
+       // require_once('../procesos/auditoria.php');
+        $auditar3 = new auditoria();
         require_once('clases/conexion_bd/conexion.php');
 
         $conectado = new conexion();
@@ -160,7 +165,8 @@ class registro_de_numero {
             echo $saldo_tarjeta;
 
             if ($montoTotalCompra > $saldo_tarjeta) {
-
+                 $auditar3->insertar_auditoria($_SESSION['usuarios'], 
+                            "Consulta", "tarjetas_recibidas", "NO tiene suficiente saldo");
                 echo "<div> <h2>NO tiene suficiente saldo</h2> </div>";
             } else {
                 $respuestaCobro = "ok";
@@ -171,6 +177,8 @@ class registro_de_numero {
             }
             $conectado->desconectar();
         } else {
+            $auditar3->insertar_auditoria($_SESSION['usuarios'], 
+                            "Conexion", "base de datos", "NO tiene suficiente saldo");
             echo 'Ocurrio un problema al intentar conectar a la base de datos';
         }
 
@@ -178,6 +186,8 @@ class registro_de_numero {
     }
 
     function validar_cierre_compra() {
+        //require_once('../procesos/auditoria.php');
+       $auditar4 = new auditoria();
         require_once('clases/conexion_bd/conexion.php');
         $valorRetornado;
         $conectado = new conexion();
@@ -206,9 +216,12 @@ class registro_de_numero {
                 $valorRetornado = 1;
             }
             $conectado->desconectar();
-
+                   $auditar4->insertar_auditoria($_SESSION['usuarios'], 
+                            "Consulta", "restricciones_venta", "valor retornado= ".$valorRetornado);
             return $valorRetornado;
         } else {
+            $auditar4->insertar_auditoria($_SESSION['usuarios'], 
+             "Conexion", "base de datos", "Ocurrio un problema al intentar conectar a la base de datos");
             echo 'Ocurrio un problema al intentar conectar a la base de datos';
         }
     }
@@ -217,8 +230,10 @@ class registro_de_numero {
 // Funcion obtiene Saldo
 // -----------------------------------
     function encuentra_saldo($cod) {
+        //require_once('../procesos/auditoria.php');
+        $auditar5 = new auditoria();
         require_once('clases/conexion_bd/conexion.php');
-        $this->usuario = 'rtonunez@gmail.com';
+        $this->usuario = $_SESSION['usuarios'];//'rtonunez@gmail.com';
         $conectado = new conexion();
         $con_res = $conectado->conectar();
         $precio_numero = 0.25;
@@ -226,7 +241,7 @@ class registro_de_numero {
 
 
         if (strcmp($con_res, "ok") == 0) {
-            echo 'Conexion exitosa todo bien ';
+           // echo 'Conexion exitosa todo bien ';
 
             $montoTotalCompra = $precio_numero * $cantidad;
             echo "total a pagar:'.$montoTotalCompra.'";
@@ -238,8 +253,13 @@ class registro_de_numero {
 
             $result = mysql_query($var);
             if ($row = mysql_fetch_array($result)) {
+                $auditar5->insertar_auditoria($_SESSION['usuarios'], 
+             "Consulta", "tarjetas_recibidas", "valor retornado ".$var);
+           
                 $retornasaldo = $row['saldo'];
             } else {
+                 $auditar5->insertar_auditoria($_SESSION['usuarios'], 
+             "Consulta", "tarjetas_recibidas", "No se encontro ningul valor");
                 $retornasaldo = 0;
             }
 
@@ -247,6 +267,8 @@ class registro_de_numero {
             $conectado->desconectar();
             return $retornasaldo;
         } else {
+             $auditar5->insertar_auditoria($_SESSION['usuarios'], 
+             "Conexion", "base de datos", "Problemas de conexion");
             echo 'Algo anda mal';
         }
     }
@@ -255,8 +277,10 @@ class registro_de_numero {
     //----Funcion agregada para que realice el descuento
     //---------------------------------------------------
     function Actualiza_saldo($cod2, $montoTot2, $saldoTarjeta2) {
+       // require_once('../procesos/auditoria.php');
+        $auditar6 = new auditoria();
         require_once('clases/conexion_bd/conexion.php');
-        $this->usuario = 'rtonunez@gmail.com';
+        $this->usuario = $_SESSION["usuarios"];//'rtonunez@gmail.com';
         $conectado = new conexion();
         $con_res = $conectado->conectar();
         if (strcmp($con_res, "ok") == 0) {
@@ -269,8 +293,12 @@ class registro_de_numero {
             $result = mysql_query($varActualiza);
 
             if ($existe = @mysql_fetch_object($result)) {
+                 $auditar6->insertar_auditoria($_SESSION['usuarios'], 
+             "Update", "tarjetas_recibidas", "Se actualizo la tabla con exito");
                 $retornar = 'Listo';
             } else {
+                 $auditar6->insertar_auditoria($_SESSION['usuarios'], 
+             "Update", "tarjetas_recibidas", "Error al intentar actualizar el valor");
                 $retornar = 'Error';
             }
 
@@ -279,12 +307,15 @@ class registro_de_numero {
             $conectado->desconectar();
             return $retornar;
         } else {
+             $auditar6->insertar_auditoria($_SESSION['usuarios'], 
+             "Conexion", "base de datos", "Problemas de conexion");
             echo 'Algo anda mal';
         }
     }
 
     function valida_saldo_disponible() {
-
+     //   require_once('../procesos/auditoria.php');
+$auditar7 = new auditoria();
         require_once('clases/conexion_bd/conexion.php');
         $valorRetornado;
         $conectado = new conexion();
@@ -305,16 +336,20 @@ class registro_de_numero {
                 //           if ($row = mysql_fetch_array($queryCierredeCompra)) {
                 // $valorRetornado = $row["id_restriccion"];
                 echo "Valor retornado" . $valorRetornado;
-
+            $auditar7->insertar_auditoria($_SESSION['usuarios'], 
+             "Consulta", "restricciones_venta", "valor retornado ".$valorRetornado);
                 $valorRetornado = 0;
             } else {
-
+                $auditar7->insertar_auditoria($_SESSION['usuarios'], 
+             "Consulta", "restricciones_venta", "valor retornado ".$valorRetornado);
                 $valorRetornado = 1;
             }
             $conectado->desconectar();
 
             return $valorRetornado;
         } else {
+            $auditar7->insertar_auditoria($_SESSION['usuarios'], 
+             "Conexion", "Base de datos", "Ocurrio un problema al intentar conectar a la base de datos");
             echo 'Ocurrio un problema al intentar conectar a la base de datos';
         }
     }

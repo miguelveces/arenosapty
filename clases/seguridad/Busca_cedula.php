@@ -21,8 +21,10 @@ class Busca_cedula {
     private $usuario;
     
     public function extraer() {
+        require_once('../procesos/auditoria.php');
+         $auditar = new auditoria();
         require_once('../conexion_bd/conexion.php');
-        $this->usuario='rtonunez@gmail.com';
+        $this->usuario=$_SESSION['usuarios'];//'rtonunez@gmail.com';
         $conectado = new conexion();
 
 
@@ -38,6 +40,8 @@ class Busca_cedula {
 //Validamos si el nombre del administrador existe en la base de datos o es correcto
            if ($row = mysql_fetch_array($result)) {
 //Si el usuario es correcto ahora validamos su contraseña
+                $auditar->insertar_auditoria($_SESSION['usuarios'], 
+                  "login", "usuarios", "Validando si el usuario esta ok");
                  $retornacedula= $row['cedula'];
             } else {
                  $retornacedula='';  
@@ -54,6 +58,8 @@ class Busca_cedula {
             
         } else {
             echo 'Algo anda mal';
+             $auditar->insertar_auditoria($_SESSION['usuarios'], 
+                  "Conexion", "base de datos","Prblemas de conexion");
         }
     }
 }

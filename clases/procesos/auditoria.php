@@ -12,8 +12,6 @@
  * @author miguel Veces
  */
 //Se instancia la clase.
-$auditar = new auditoria();
-$auditar->insertar_auditoria("mveces8@gmail.com", "insert", "usuarios", "se realizo el registro correctamente", "122.122.33.33");
 
 class auditoria {
 
@@ -39,6 +37,12 @@ class auditoria {
                     }
                     mysql_free_result($result);
                 }
+                else{
+                    $this->idUsuario = 0;
+                }
+                 if (strcmp($usuario, "desconocido") == 0) {
+                     $this->idUsuario = 11;
+                 }
                 require_once 'getIp.php';
                 $traerIp = new getIp();
                 $this->ip = $traerIp->getRealIP();  
@@ -50,7 +54,7 @@ class auditoria {
                     // echo '<script>alert("BIENVENIDO, se ha registrado!");window.location="/arenosapty-master/index.php"</script>';
                     echo 'Se inserto correctamente';
                 } else {
-                    echo 'Hubo un error al intentar registrar en la tabla Auditorias';
+                    echo 'Hubo un error al intentar registrar en la tabla Auditorias '.$insert;
                 }
 
 
