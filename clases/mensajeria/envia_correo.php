@@ -46,7 +46,7 @@ class envia_correo {
         $yourname = $correo; // stripslashes(strip_tags($_POST['your_name']));
         $yourmessage = $correo; //stripslashes(strip_tags($_POST['your_message']));
 
-        $cuerpo = ' <html>  <head> <title>Bienbenido</title> </head> <body> <h1>Cotizacion!</h1> <p> <b>'
+        $cuerpo = ' <html>  <head> <title>Bienvenido a PTYLOTTO</title> </head> <body> <h1>Cotizacion!</h1> <p> <b>'
                 . $mensaje .' </b>. ' . $yourmessage . '</p> </body> </html> ';
 
 //para el envío en formato HTML 

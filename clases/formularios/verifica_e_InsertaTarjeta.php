@@ -102,6 +102,9 @@ class verifica_e_InsertaTarjeta {
                        "Insert", "registrada_sistema", "Se actualiza el estado de la tarjeta en tarjetas recibidas");
                        $auditar->insertar_auditoria($_SESSION['usuarios'], 
                        "Insert", "tarjetas_por_usuario", "Tarjeta Registrada Correctamente");
+                       require_once '../mensajeria/envia_correo.php';
+                    $enviando = new envia_correo();
+                    $enviando->enviar_Correo_confirmacion($_SESSION['usuarios'], "Se ha registrado una nueva tarjeta  en PTYLOTO ".$this->codigoTar);
                        $this->mensaje="Tarjeta Registrada Correctamente ";  
                     }
                    else {

@@ -71,6 +71,9 @@ class registro_de_numero {
                             $auditar->insertar_auditoria($_SESSION['usuarios'], 
                             "Insert", "numeros_por_usuario", "OK, se ha registrado!");
                 
+                            require_once '../mensajeria/envia_correo.php';
+                    $enviando = new envia_correo();
+                    $enviando->enviar_Correo_confirmacion($_SESSION['usuarios'], "ha comprado el nuemero ".$numero." en PTYLOTTO");
                             $this->respuesta= 'OK, se ha registrado!';
                         } else {
                             $auditar->insertar_auditoria($_SESSION['usuarios'], 
@@ -178,7 +181,7 @@ class registro_de_numero {
             $conectado->desconectar();
         } else {
             $auditar3->insertar_auditoria($_SESSION['usuarios'], 
-                            "Conexion", "base de datos", "NO tiene suficiente saldo");
+                            "Conexion", "base de datos", "Ocurrio un problema al intentar conectar a la base de datos");
             echo 'Ocurrio un problema al intentar conectar a la base de datos';
         }
 

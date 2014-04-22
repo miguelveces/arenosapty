@@ -52,7 +52,8 @@ class auditoria {
                 $insertarAuditoria = @mysql_query($insert);
                 if ($insertarAuditoria) {
                     // echo '<script>alert("BIENVENIDO, se ha registrado!");window.location="/arenosapty-master/index.php"</script>';
-                    echo 'Se inserto correctamente';
+                    //echo 'Se inserto correctamente';
+                    
                 } else {
                     echo 'Hubo un error al intentar registrar en la tabla Auditorias '.$insert;
                 }

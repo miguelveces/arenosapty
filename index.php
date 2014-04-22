@@ -21,8 +21,7 @@
             header('Location: login.php');
             exit();
         }
-        ?>
-        <form name="frmLogin" action="clases/seguridad/logout.php" method="POST">            
+        ?><form name="frmLogin" action="clases/seguridad/logout.php" method="POST">            
             <h2 id="saludo"> Hola Loteria</h2>
 
             <input type="submit" name ="iniciar" value="Cerrar Sesion" data-theme="b" />
