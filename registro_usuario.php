@@ -1,49 +1,117 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!--<link rel="stylesheet" href="css/style.css">-->
-
-        <title></title>
-    </head>
+<?php ob_start(); ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+    <html>
+        <head>
+            <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+                 <title>PTY Lotto</title>
+        <style>
+          
+            
+           body
+           {
+            background-image: url(img/fondo1.jpg)
+            
+           }
+        </style>
+        </head>
     <body>
-         <?php
-//creamos la sesion
-        //session_start();
+        
+       
+           
+           
+            <table id="Tabla_01"  width="100%"  border="0" cellpadding="0" cellspacing="0">
+                <tr>
 
-//validamos si se ha hecho o no el inicio de sesion correctamente
-//si no se ha hecho la sesion nos regresará a login.php
-//esta instruccion debe ir al iniscio de cada pagina
-        //if (!isset($_SESSION['usuarios'])) {
-          //  header('Location: login.php');
-           // exit();
-        //}
-        ?>
-        <div align="center"> <img src="imagenes/logo.jpg" /> 
+                    <td background="img/bkg_1.jpg" height="124" height="116" >
+                        <div>
+                            <div style="float:left;padding-top:12px">  <img src="img/logo.jpg"></div> 
+                            <div style="float:right; padding-top:13px">  <img src="img/estrellas.jpg"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
 
-        </div>
-        <div align="center">
-            <h2>Formulario de Registro</h2>
 
-            <form  action="clases/formularios/registrar_user.php" method="POST">
-                <!--<label for="male">Male</label>-->
+                    <td background="img/bkg_2.jpg" height="447" style=" vertical-align: top; padding-top: 35px ">
 
-<!--<input type="text" name="fname" placeholder="First name">-->
-                Nombre: <input type="text" name="nombre" required><br><br>
-                Apellido: <input type="text" name="apellido" required><br><br>
-                Cédula: <input type="text" name="cedula" required><br><br>
-                <!--Fecha nacimiento: <input type="date" name="cumpleanios"
-                                         step="1" min="2013-01-01" max="2014-12-31" value="2013-01-01"><br><br>-->
-                Teléfono: <input type="text" name="telefono" required><br><br>
-                Correo Electrónico: <input type="email" name="correo_electronico" required><br><br>
-                Correo Electrónico alterno: <input type="email" name="correo_electronico2" required><br><br>
-                Contraseña:<input type="password" name="contrasenia" required><br><br>
+                        <table  align="center" width="656" height="447" border="0" cellpadding="0" cellspacing="0" style="background-image: url(img/nuevo-usuario.jpg);background-repeat: no-repeat; background-size: 656px 96px">
+                            <tr>
+                                <td  style=" vertical-align: top; padding-top:60px"  width="656px">
+                                    <div>
+                                    <form name="frmRegistro" action="clases/formularios/registrar_user.php" method="POST"> 
+                                    <div >
+                                    <div style="border: 0px solid;margin-left:35px; float:left;padding-bottom:6px" ><label  style="height: 25px;font-size:12px; font-family: arial; font-weight: bold; color:#666666">Nombre de usuario</label></div>
+                                    <div style="border: 0px solid;margin-right:240px; float:right;padding-bottom:6px" ><label  style="height: 25px;font-size:12px; font-family: arial; font-weight: bold; color:#666666">Apellido</label>  </div>
+                                    </div>
+                                    
+                                    <div>
+                                    <div style="border: 0px solid;margin-left:35px; float:left;padding-bottom:6px" ><input type="text" name="nombre" required style="border-right: 1px solid #e6e6e6;border-bottom: 1px solid #e6e6e6;border-left: 1px solid #bfbfbf;border-top: 1px solid #bfbfbf;width: 240px; height: 25px;background-color:#e6e6e6"></div>
+                                    <div style="border: 0px solid;margin-right:45px; float:right;padding-bottom:6px"><input type="text" name="apellido" required style="border-right: 1px solid #e6e6e6;border-bottom: 1px solid #e6e6e6;border-left: 1px solid #bfbfbf;border-top: 1px solid #bfbfbf;width: 240px; height: 25px;background-color:#e6e6e6"></div>
+                                    </div>
+                                    
+                                    <div>
+                                    <div style="width:70px; border: 0px solid;margin-left:35px; float:left;padding-bottom:6px" ><label  style="height: 25px; font-size:12px; font-family: arial; font-weight: bold; color:#666666">Cedula</label></div>
+                                    <div style="border: 0px solid;margin-right:237px; float:right;padding-bottom:6px" ><label  style="height: 25px;font-size:12px; font-family: arial; font-weight: bold; color:#666666">Telefono</label>  </div>
 
-                <input type="submit" value="Registrarse">
-                <input type="submit" formtarget="_blank"
-                       value="Regresar">
-            </form>
+                                     </div>
+                                    
+                                    <div>
+                                    <div style="border: 0px solid; margin-left:35px;float:left;padding-bottom: 6px" ><input type="text" name="cedula" required style="border-right: 1px solid #e6e6e6;border-bottom: 1px solid #e6e6e6;border-left: 1px solid #bfbfbf;border-top: 1px solid #bfbfbf;width: 240px; height: 25px;background-color:#e6e6e6"></div>
+                                    <div style="border: 0px solid;margin-right:45px; float:right;padding-bottom:6px" ><input type="text" name="telefono"required style="border-right: 1px solid #e6e6e6;border-bottom: 1px solid #e6e6e6;border-left: 1px solid #bfbfbf;border-top: 1px solid #bfbfbf;width: 240px; height: 25px;background-color:#e6e6e6"></div>                    
+                                     </div>
+                                    
+                                    <div >
+                                    <div style="border: 0px solid; margin-left:35px; float:left;padding-bottom: 6px" ><label  style="height: 25px;font-size:12px; font-family: arial; font-weight: bold; color:#666666">Correo Electrónico</label></div>
+                                    <div style="border: 0px solid;margin-right:136px; float:right;padding-bottom:6px"><label  style="height: 25px;font-size:12px; font-family: arial; font-weight: bold; color:#666666">Correo Electrónico alterno</label></div>
+                                     </div>
+                                    
+                                    <div >
+                                    <div style="border:0px solid; margin-left:35px; float:left;padding-bottom: 6px" ><input type="email" name="correo_electronico" value="" required style="border-right: 1px solid #e6e6e6;border-bottom: 1px solid #e6e6e6;border-left: 1px solid #bfbfbf;border-top: 1px solid #bfbfbf;width: 240px; height: 25px;background-color:#e6e6e6"></input></div>
+                                    <div style="border: 0px solid;margin-right:45px; float:right;padding-bottom:6px" ><input type="email" name="correo_electronico2" required style="border-right: 1px solid #e6e6e6;border-bottom: 1px solid #e6e6e6;border-left: 1px solid #bfbfbf;border-top: 1px solid #bfbfbf;width: 240px; height: 25px;background-color:#e6e6e6"></div>
+                                     </div>
+                                    
+                                    <div >
+                                    <div style="border:0px solid; margin-left:35px; float:left;padding-bottom: 6px" > <label  style="height: 25px;font-size:12px; font-family: arial; font-weight: bold; color:#666666"> Contraseña</label> </div>
+                                    <div style="width:60px; height: 25px;border: 0px solid;margin-right:225px; float:right;padding-bottom:6px"></div>
+                                    </div>
+                                    <div >
+                                        <div style="border: 0px solid;margin-left:35px; float:left;padding-bottom:6px" > <input type="password" name="contrasenia" required style="border-right: 1px solid #e6e6e6;border-bottom: 1px solid #e6e6e6;border-left: 1px solid #bfbfbf;border-top: 1px solid #bfbfbf;width: 240px; height: 25px;background-color:#e6e6e6"></div>
+                                        <div style="width:60px; height: 25px; border: 0px solid;margin-right:225px; float:right;padding-bottom:6px"></div>
+                                    </div>
+                                    <div>
+                                        <div style="border: 0px solid; margin-left:35px;padding-bottom: 6px;padding-top:20px;float:left" ><input name="reg" type="image" src="img/btn-registrar.gif" data-theme="b" /></div>
+                                        <div style="width:60px; height: 25px;border: 0px solid;margin-right:225px; float:right;padding-bottom:6px"></div>
+                                    </div>
+                                     </form> 
+                                    <div>
+                                    <!--<form name="frmLogin" action="login.php" method="POST">
+                                    <div style="border: 0px solid; margin-left:35px;padding-bottom: 6px;float:left;margin-top: 10px" ><input type="image" src="img/btn-atras.gif" data-theme="b"/></div>
+                                    </form>-->
+                                    </div>
+                                    </div>
+                                </td> 
+                                <td> 
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    
+                    <td style="background-color:#fff">
+                         <div style="float:right;padding-right:13px">  
+                            <img src="img/logo-loteria.gif">
+                       </div>
+                    </td>
+                </tr>
+                <tr>
+                    
+                    <td background="img/bkg_3.jpg" height="40" >
+                        
+                    </td>
+                </tr>
+             </table>
+          
 
-        </div>
     </body>
 </html>

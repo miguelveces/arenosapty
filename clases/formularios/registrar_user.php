@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 /**
  * Esta clase Insertara Los datos del Usuario en la base de datos
  *
@@ -52,6 +52,7 @@ class registrar_user {
             $encripta = new encriptar();
             $contrasenia = $encripta->encriptar_dato($_POST['contrasenia'], "ptylotodeveloper");
             $fecha_actual = date("Y-m-d");
+            $sinGuionCedula = str_replace("-", "", $cedula);
 
             $query = @mysql_query("SELECT * FROM usuarios 
                     WHERE correo_electronico = '" . mysql_real_escape_string($correo_electronico) . "' 
@@ -72,7 +73,7 @@ class registrar_user {
                   $insert = 'INSERT INTO usuarios (nombre,apellido,telefono,cedula,fecha_registro, correo_electronico, correo_electronico2, contrasenia,activacion, estado)'
                         . ' values ("' . mysql_real_escape_string($nombre) . 
                         '","' . mysql_real_escape_string($apellido) . '","' .
-                        mysql_real_escape_string($telefono) . '","' . mysql_real_escape_string($cedula) . 
+                        mysql_real_escape_string($telefono) . '","' . mysql_real_escape_string($sinGuionCedula) . 
                         '","' . mysql_real_escape_string($fecha_actual) . '", "' . mysql_real_escape_string($correo_electronico) .
                         '", "' . mysql_real_escape_string($correo_electronico2) . '", "' . mysql_real_escape_string($contrasenia) . '", "'.$activate.'", 0)';
                 

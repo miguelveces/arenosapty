@@ -1,97 +1,59 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-    <html>
-        <head>
-            <META http-equiv="Content-Type" content="text/html; charset=utf-8">
-                 <title>PTY Lotto</title>
-        <style>
-           a:link{ color:#9eb73a }
-           a:visited{color:#9eb73a}
-           a:hover{color:#9eb73a}
-           a:active{color:#9eb73a}
-            
-           body
-           {
-            background-image: url(img/fondo1.jpg)
-            
-           }
-        </style>
-        </head>
+<?php ob_start(); ?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>PTY Lotto</title>
+        <link rel="stylesheet" href="css/ptylotto.css">
+        <meta name="description"	content="Loteria de  Panamá"/>		
+    </head>
     <body>
+        <!--encabezado de la pagina-->
+        <div id="header" >
+            <div class="logo">  <img src="img/logo.jpg"/></div> 
+            <div class="estrellas">  <img src="img/estrellas.jpg"/></div>
+        </div>
+        <!--Contenido de la pagina-->
+        <div id="contenido" >
+            <div data-role="fieldcontain" id="login">
+                <div class="div_login"></div>
+                <div class="label_box_inicial"><label for="user" class="label_frm">Correo electronico</label></div>
+                <div class="txt_box"><input type="text" name="user" id="user" value="" class="txt_frm" /></div>
+                <div class="label_box"><label for="pwd" class="label_frm">Contrase&ntilde;a:</label></div>
+                <div class="txt_box"><input type="password" name="pass" id="pwd" value="" placeholder="contrase&ntilde;a"  class="txt_frm"  />    </div>
+                <div> <h2 id="error"> </h2></div>
+                <div class="btn_iniciar"><input type="image" src="img/btn-inicio.gif" onclick = "this.form.action = 'clases/seguridad/valida_usuario.php'"/></div>
+                <div class="olvida_pwd"><a href="recupera_pwd.php"> &iquest;Ha olvidado su contrase&ntilde;a?</a></div>
+            </div> 
 
-       
-           
-           
-            <table id="Tabla_01"  width="100%"  border="0" cellpadding="0" cellspacing="0">
-                <tr>
+            <div   id="registro">
+                <div class="div_reg"></div>
+                <div class="label_box_2" ><label  class="label_frm">Nombre de usuario</label></div>                
+                <div  class="label_box_2" ><label  class="label_frm">Apellido</label>  </div>        
+                <div  class="txt_box_2" ><input type="text" name="nombre"   class="txt_frm" ></div>
+                <div class="txt_box_2"><input type="text" name="apellido"   class="txt_frm" ></div>
+                
+                <div  class="label_box_2" ><label  class="label_frm">Cedula</label></div>
+                <div  class="label_box_2" ><label  class="label_frm">Telefono</label>  </div>
+                <div class="txt_box_2" ><input type="text" name="cedula"   class="txt_frm" ></div>               
+                <div class="txt_box_2" ><input type="text" name="telefono"  class="txt_frm" ></div>                               
+                <div  class="label_box_2" ><label  class="label_frm">Correo Electrónico</label></div>
+                <div  class="label_box_2"><label  class="label_frm">Correo Electrónico alterno</label></div> 
+                <div class="txt_box_2" ><input type="email" name="correo_electronico" value=""  class="txt_frm" ></input></div>                                        
+                <div class="txt_box_2" ><input type="email" name="correo_electronico2"   class="txt_frm" ></div>          
+                <div  class="label_box_2" > <label  class="label_frm" > Contraseña</label> </div>                
+                <div  class="label_box_2" > <label  class="label_frm" > Repetir Contraseña</label> </div>
+                <div class="txt_box_2" > <input type="password" name="contrasenia"   class="txt_frm" ></div>
+                <div class="txt_box_2" > <input type="password" name="contrasenia2"   class="txt_frm" ></div>
+                
+                <div class="btn_registrar" ><input type="image" src="img/btn-registrar.gif" data-theme="b" onclick = "this.form.action = 'clases/formularios/registrar_user.php'" /></div>
+            </div>
 
-                    <td background="img/bkg_1.jpg" height="124" height="116" >
-                        <div>
-                            <div style="float:left;padding-top:12px">  <img src="img/logo.jpg"></div> 
-                            <div style="float:right; padding-top:13px">  <img src="img/estrellas.jpg"></div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
+        </div>
 
+        <!--pie de la pagina-->
+        <div id="footer" >
 
-                    <td background="img/bkg_2.jpg" height="500" style=" vertical-align: top; padding-top: 35px ">
-
-                        <table  align="center" width="100%" height="500" border="0" cellpadding="0" cellspacing="0">
-                            <tr>
-                                <td style=" vertical-align: top;">
-                                    <form name="frmLogin" action="clases/seguridad/valida_usuario.php" method="POST"> 
-                                    <div data-role="fieldcontain" id="login" style="text-align:left; ">
-                                        <div style=" margin-left:auto; margin-right:15px;width:313px;  height: 91px;  background-image: url(img/inicio-sesion.jpg); background-repeat: no-repeat; background-size: 313px 91px"></div>
-                                        <div style=" margin-left:auto; width:290px;padding-bottom: 6px; margin-top:-15px"><label for="user" style="font-size:12px; font-family: arial; font-weight: bold; color:#666666">Correo electronico</label></div>
-                                        <div style=" margin-left:auto; width:290px;padding-bottom: 6px  "><input type="text" name="user" id="user" value="" style="border-right: 1px solid #e6e6e6;border-bottom: 1px solid #e6e6e6;border-left: 1px solid #bfbfbf;border-top: 1px solid #bfbfbf;width: 240px; height: 25px;background-color:#e6e6e6"/></div>
-                                        <div style=" margin-left:auto; width:290px;padding-bottom: 6px   "><label for="pwd" style="font-size:12px; font-family: arial; font-weight: bold; color:#666666">Contrase&ntilde;a:</label></div>
-                                        <div style=" margin-left:auto; width:290px;padding-bottom: 8px  "><input type="password" name="pass" id="pwd" value="" placeholder="contrase&ntilde;a" style="border-right: 1px solid #e6e6e6;border-bottom: 1px solid #e6e6e6;border-left: 1px solid #bfbfbf;border-top: 1px solid #bfbfbf;width: 240px; height: 25px;background-color:#e6e6e6" />    </div>
-                                        <div> <h2 id="error"> </h2></div>
-                                        <div style=" margin-left:auto;margin-right:53px;text-align: right; width:290px; padding-bottom: 20px"><input type="image" src="img/btn-inicio.gif"/></div>
-                                        <div style=" margin-left:auto;margin-right:50px;text-align: center; width:290px; padding-bottom: 6px"><a href="recupera_pwd.php" style="text-decoration:none; font-family:arial;font-size: 12px; font-weight:bold "> &iquest;Ha olvidado su contrase&ntilde;a?</a></div>
-                                    </div>  
-                                </form>
-                                </td>
-                                <td style=" vertical-align: top; ">
-                                    <form name="frmRegistro" action="registro_usuario.php" method="POST">
-                                    <div data-role="fieldcontain" id="login1" style="text-align:left; ">
-                                        <div style="  margin-right: auto; margin-left:15px; width:313px; height: 91px;  background-image: url(img/registrese.jpg); background-repeat: no-repeat; background-size: 313px 91px"></div>
-                                        <div style="  margin-right: auto;margin-left:53px; width:290px;padding-bottom: 6px; margin-top:-15px"><label for="user" style="font-size:12px; font-family: arial; font-weight: bold; color:#666666">Ingrese su correo electronico</label></div>
-                                        <div style="  margin-right: auto;margin-left:53px; width:290px;padding-bottom: 6px  "><input type="email" name="correo_electronico" style="border-right: 1px solid #e6e6e6;border-bottom: 1px solid #e6e6e6;border-left: 1px solid #bfbfbf;border-top: 1px solid #bfbfbf;width: 240px; height: 25px;background-color:#e6e6e6"/></div>
-                                        <div style="  margin-right: auto;margin-left:53px; width:290px;padding-bottom: 6px;height: 19px   "></div>
-                                        <div style="  margin-right: auto;margin-left:53px; width:290px;padding-bottom: 8px;height: 25px ">   </div>
-                                        <div style="  margin-right: auto; margin-left:53px; width:290px;"> 
-                                        <h2 id="error"> </h2></div>
-                                        <div style="  margin-right: auto; width:290px;text-align: right;padding-bottom: 6px"><input type="image" src="img/btn-aceptar.gif" data-theme="b" /></div>
-                                        </form>
-                                        <div></div>
-                                    </div>  
-                               </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" style=" vertical-align: bottom;"> 
-                                    <div>
-                                        <div style="float:right; padding-right:13px">  <img src="img/logo-loteria.gif">
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-            		          
-             
-                    </td>
-                    
-                </tr>
-                <tr>
-                    <td background="img/bkg_3.jpg" height="40" >
-                        
-                    </td>
-                </tr>
-             </table>
-           
-        
-
-
+        </div>
     </body>
 </html>
-

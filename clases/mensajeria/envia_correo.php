@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 /**
  * Clase que envia los correos a los usuarios
  *

@@ -1,4 +1,5 @@
 <?php
+ob_start();
 //$varBuscarr = new busca_tarjeta();
 //$varBuscarr->extraer_cod_tarjeta();
 
@@ -6,10 +7,10 @@ class busca_tarjeta {
     private $usuario;
  
      function extraer_cod_tarjeta() {
-           require_once('../procesos/auditoria.php');
+           require_once('clases/procesos/auditoria.php');
          $auditar = new auditoria();
         //Creamos sesión
-                    session_start();
+                    //session_start();
         require_once('clases/conexion_bd/conexion.php');
         $this->usuario = $_SESSION['usuarios'];//'rtonunez@gmail.com';
         $conectado = new conexion();

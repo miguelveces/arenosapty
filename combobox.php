@@ -1,5 +1,5 @@
 <?php
-
+ ob_start(); 
 class combobox {
 
     /**  Localización de los datos sobrecargados.  */

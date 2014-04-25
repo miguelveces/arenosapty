@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 require_once('../../lib_php/class.phpmailer.php');
 $mail = new PHPMailer();
 $mail->IsSMTP();

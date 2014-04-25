@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 /**
  * Esta Clase se utilizara para desencriptar 
  * los datos que se hayan encriptado.

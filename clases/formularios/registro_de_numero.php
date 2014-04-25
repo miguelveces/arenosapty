@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 /**
  * Esta clase Insertara Los datos del Usuario en la base de datos
  *

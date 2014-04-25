@@ -1,4 +1,5 @@
 <?php
+ob_start();
 /**
  * Clase que optiene el ip de la persona que realiza la transaccion.
  *

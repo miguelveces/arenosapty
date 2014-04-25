@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 /**
  * Esta clase sera utilizada para centralizar las conexiones a base de datos
  *

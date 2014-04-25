@@ -1,20 +1,17 @@
 <?php
-
+ob_start();
 /**
  * Esta clase valida si el usuario existe en la base de datos
  *
  * @author Miguel Veces
  */
  //Se instancia la clase
- $mains = new valida_usuario();
- $mains->validar();
+$mains = new valida_usuario();
+$mains->validar();
 class valida_usuario {
 
     private $usuario; //$_POST["admin"];
     private $password; //$_POST["password_usuario"];
-
-
-
 //costructor de la clase Se usa para inicializar variables
 
 //    public function __construct() {
@@ -26,7 +23,7 @@ class valida_usuario {
       
         require_once('../procesos/auditoria.php');
         $this->usuario = $_POST["user"];
-        $this->password = $_POST["pass"];
+        $this->password =  $_POST["pass"];
         require_once('../conexion_bd/conexion.php');        
         require_once('encriptar.php');
         $encripta = new encriptar();
@@ -37,8 +34,8 @@ class valida_usuario {
         $conectado = new conexion();
 
 
-        $con_res = $conectado->conectar();
-
+        $con_res = $conectado->conectar();  
+echo "estoy dentro";
         if (strcmp($con_res, "ok") == 0) {
             //echo 'Conexion exitosa todo bien';
             $consulta = "SELECT * FROM usuarios WHERE correo_electronico = '" . $this->usuario . "'";
@@ -66,8 +63,9 @@ class valida_usuario {
                     $auditar = new auditoria();
                     $auditar->insertar_auditoria($this->usuario, 
                             "login", "usuarios", "Acaba de inisiar sescion");
+                    echo 'lllllLa Contraseña es incorrecta ';
                     //Redireccionamos a la pagina: index.php
-                    header("Location: ../../index.php");
+                    header("Location: ../../registrar_numero.php");
                 } else {
                     //En caso que la contraseña sea incorrecta enviamos un msj y redireccionamos a login.php
                     echo 'La Contraseña es incorrecta ';

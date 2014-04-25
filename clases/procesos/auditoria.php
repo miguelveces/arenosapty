@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -18,7 +18,7 @@ class auditoria {
     private $idUsuario, $ip;
 
     public function insertar_auditoria($usuario, $accion, $tabla, $comentario) {
-        require_once('../conexion_bd/conexion.php');
+        require_once('http://localhost:3515/ptydeveloper/clases/conexion_bd/conexion.php');
 //conectar('localhost', 'root', '', 'ptyloto');
         $conectar = new conexion();
         $con_res = $conectar->conectar();
@@ -69,4 +69,4 @@ class auditoria {
         }
     }
 
-}
+}?>
