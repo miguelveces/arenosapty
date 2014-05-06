@@ -20,22 +20,25 @@ a{
 }
 body
 {
-    background-image: url(../img/fondo1.jpg_back)
-
+    background-image: url(../img/fondo1.jpg);
+    margin:auto;
 }
 #contenido{
     background-image: url(../img/bkg_2.jpg);
     width: 100%;
-    min-height: 29em;
+    min-height: 30em;
 
+    
 }
-
 #footer
-{  
-    background-image: url(../img/bkg_3.jpg);
-    width: 100%;
-    height: 40px;
+{
+   width: 100%; 
+   height: 93px;
+   background-color:white;
+    
+    
 }
+
 #header{
     background-image: url(../img/bkg_1.jpg);
 
@@ -43,40 +46,116 @@ body
     height: 125px;
 }
 #login{
-    margin-top: 1em;
-    margin-left: 15%; 
-    text-align:left;
+    margin-top: 2em;
+    margin-left: 25%;
     display: inline-block;
+}
+#login_registro{
+    margin-top: 2em;
+    display: inline-block;
+   
+   
 }
 #registro{
-    margin-top: 1em;
-    margin-left: 1%;
-    margin-bottom: 2em;
-    text-align:left;
+    margin-top: 2em;
+    margin-left: 25%;
     display: inline-block;
-    width: 626px;
+   
 }
+#numero{
+    margin-top: 2em;
+    margin-left: 25%;
+    display: inline-block;
+   
+}
+#tarjeta{
+    margin-top: 2em;
+    margin-left: 25%;
+    display: inline-block;
+   
+}
+#pass{
+    margin-top: 2em;
+    margin-left: 35%;
+    display: inline-block;
+   
+}
+
 .div_login{
-    margin-left:auto; 
-    margin-right:15px;
-    width:313px; 
-    height: 91px; 
+    margin:auto; 
+    width:321px; 
+    height: 96px; 
     background-image: url(../img/inicio-sesion.jpg);
     background-repeat: no-repeat; 
-    background-size: 313px 91px;
-    
-}
-.div_reg{
-    margin-left:auto; 
-    margin-right:15px;
-    width: 626px; 
-    height: 91px; 
-    background-image: url(../img/nuevo-usuario.jpg);
-    background-repeat: no-repeat; 
-    background-size: 626px 91px;
+    background-size: 321px 96px;
     
 }
 
+.div_login_registro{
+    margin:auto; 
+    width:321px; 
+    height: 96px; 
+    background-image: url(../img/registrese.jpg);
+    background-repeat: no-repeat; 
+    background-size: 321px 96px;
+    
+}
+.div_reg{
+    width: 656px; 
+    height: 96px; 
+    background-image: url(../img/nuevo-usuario.jpg);
+    background-repeat: no-repeat; 
+    background-size: 656px 96px;
+    
+}
+.div_num{
+    width: 656px; 
+    height: 96px; 
+    background-image: url(../img/registro-numero.jpg);
+    background-repeat: no-repeat; 
+    background-size: 656px 96px;
+    
+}
+.div_tarj{
+    width: 656px; 
+    height: 96px; 
+    background-image: url(../img/registro-tarjeta.jpg);
+    background-repeat: no-repeat; 
+    background-size: 656px 96px;
+    
+}
+.div_pass{
+    margin:auto; 
+    width:321px; 
+    height: 96px; 
+    background-image: url(../img/olvido-contrasena.jpg);
+    background-repeat: no-repeat; 
+    background-size: 321px 96px;
+    
+}
+
+.div_grid
+{    
+     overflow: auto;
+     width:100%;
+     height: 150px;
+}
+.div_footer_logo{
+    width: 100%;
+    height: 53px;
+    background-image: url(../img/logo-loteria.gif);
+    background-repeat: no-repeat; 
+    background-size: 87px 53px;
+    background-position: right;
+    margin-left:-15px;
+    
+}
+.div_footer{
+    background-image: url(../img/bkg_3.jpg);
+    width: 100%;
+    height: 40px;
+  
+}
 .estrellas{
     float:right; 
     padding-top:20px;
@@ -93,11 +172,33 @@ body
     padding-bottom: 6px;
 }
 /*dos columnas*/
+.label_box_inicial2{
+    margin-top: -15px;
+    display: inline-block;
+    margin-left:2.5em;
+    width:290px;
+    padding-bottom: 6px;
+}
 .label_box_2{
     display: inline-block;
-    margin-left:1em;
-    width:47%;
+    margin-left:2.5em;
+    width:290px;
     padding-bottom: 6px;
+}
+/*label empty*/
+.label_empty{
+    margin-left:auto;
+    width:290px;
+    height: 25px;
+    padding-bottom: 6px;
+}
+.label_empty2{
+    display: inline-block;
+    margin-left:2.5em;
+    width:290px;
+    padding-bottom: 6px;
+    height: 20px;
+   
 }
 .label_frm{
     font-size:12px; 
@@ -120,8 +221,15 @@ body
 /*dos columnas*/
 .txt_box_2{
     display: inline-block;
-    margin-left:1em;
-    width:47%;
+    margin-left:2.5em;
+    width:290px;
+    padding-bottom: 6px;
+
+}
+.txt_box_3{
+    /*display: inline-block;*/
+    margin-left:2.5em;
+    width:580px;
     padding-bottom: 6px;
 
 }
@@ -134,6 +242,15 @@ body
     height: 25px;
     background-color:#e6e6e6;
 }
+.txt_frm_3{
+    border-right: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    border-left: 1px solid #bfbfbf;
+    border-top: 1px solid #bfbfbf;
+    width: 575px; 
+    height: 25px;
+    background-color:#e6e6e6;
+}
 .btn_iniciar{
     margin-left:auto;
     margin-right:53px;
@@ -142,12 +259,27 @@ body
     padding-bottom: 20px;
 }
 .btn_registrar{
-    margin-left:1em;    
+    margin-left:3em;    
     text-align: left; 
     width:290px; 
     padding-bottom: 20px;
 }
-
+.btn_aceptar{
+    margin-left:1em;    
+    text-align: right; 
+    width:290px; 
+    padding-bottom: 20px;
+}
+.btn_atras{
+    margin-left:11em;
+    padding-bottom: 6px;
+    margin-top: -56px
+}
+.btn_regitro_tarjeta{
+    margin-left:19em;
+    padding-bottom: 6px;
+    margin-top: -42px
+}
 .olvida_pwd{
     margin-left:auto;
     margin-right:50px;
@@ -158,4 +290,41 @@ body
 
 .txt_box_r{
     border: 0px solid;margin-right:45px; float:right;padding-bottom:6px
+}
+.grd_box{
+    /*display: inline-block;*/
+    margin-left:2.5em;
+    width:580px;
+    padding-bottom: 20px;
+
+}
+.grid_tbl
+{
+     border-collapse: collapse;
+    
+    
+}
+
+.grid_tbl td
+{
+     font-size:12px; 
+     font-family: arial; 
+     font-weight: bold; 
+     color:#666666; 
+     height: 25px; 
+     background-color:#e6e6e6;
+     border: 1px solid #bfbfbf;
+     padding: 2px
+    
+}
+
+.mensaje{
+    border:solid red 2px;
+}
+
+#reg{
+    background-color:#FF0000;
+    background:url(../img/btn-registrar.gif);
+    width: 3em;
+    border-radius: 2px 2px;
 }

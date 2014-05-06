@@ -45,7 +45,7 @@
                     <tr>
                         <td  style=" vertical-align: top; padding-top:60px"  width="321px">
                           <div>
-                          <form name="contrasena" action="clases/seguridad/valida_usuario.php" method="POST">   
+                              <form name="contrasena" action="clases/seguridad/recupera_contrasenia.php" method="POST">   
                                 <div>
                                     <div style="border: 0px solid;margin-left:35px; float:left;padding-bottom:6px" ><label   for="user" style="height: 25px;font-size:12px; font-family: arial; font-weight: bold; color:#666666">Correo Electrónico</label></div>
                                 </div>

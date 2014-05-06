@@ -17,43 +17,35 @@
         <div id="contenido" >
             <div data-role="fieldcontain" id="login">
                 <div class="div_login"></div>
+                 <form name="frmlogin" action="clases/seguridad/valida_usuario.php" method="POST">  
                 <div class="label_box_inicial"><label for="user" class="label_frm">Correo electronico</label></div>
                 <div class="txt_box"><input type="text" name="user" id="user" value="" class="txt_frm" /></div>
                 <div class="label_box"><label for="pwd" class="label_frm">Contrase&ntilde;a:</label></div>
                 <div class="txt_box"><input type="password" name="pass" id="pwd" value="" placeholder="contrase&ntilde;a"  class="txt_frm"  />    </div>
                 <div> <h2 id="error"> </h2></div>
-                <div class="btn_iniciar"><input type="image" src="img/btn-inicio.gif" onclick = "this.form.action = 'clases/seguridad/valida_usuario.php'"/></div>
+                <div class="btn_iniciar"><input type="image" src="img/btn-inicio.gif"/></div>
                 <div class="olvida_pwd"><a href="recupera_pwd.php"> &iquest;Ha olvidado su contrase&ntilde;a?</a></div>
+                </form> 
             </div> 
 
-            <div   id="registro">
-                <div class="div_reg"></div>
-                <div class="label_box_2" ><label  class="label_frm">Nombre de usuario</label></div>                
-                <div  class="label_box_2" ><label  class="label_frm">Apellido</label>  </div>        
-                <div  class="txt_box_2" ><input type="text" name="nombre"   class="txt_frm" ></div>
-                <div class="txt_box_2"><input type="text" name="apellido"   class="txt_frm" ></div>
-                
-                <div  class="label_box_2" ><label  class="label_frm">Cedula</label></div>
-                <div  class="label_box_2" ><label  class="label_frm">Telefono</label>  </div>
-                <div class="txt_box_2" ><input type="text" name="cedula"   class="txt_frm" ></div>               
-                <div class="txt_box_2" ><input type="text" name="telefono"  class="txt_frm" ></div>                               
-                <div  class="label_box_2" ><label  class="label_frm">Correo Electrónico</label></div>
-                <div  class="label_box_2"><label  class="label_frm">Correo Electrónico alterno</label></div> 
-                <div class="txt_box_2" ><input type="email" name="correo_electronico" value=""  class="txt_frm" ></input></div>                                        
-                <div class="txt_box_2" ><input type="email" name="correo_electronico2"   class="txt_frm" ></div>          
-                <div  class="label_box_2" > <label  class="label_frm" > Contraseña</label> </div>                
-                <div  class="label_box_2" > <label  class="label_frm" > Repetir Contraseña</label> </div>
-                <div class="txt_box_2" > <input type="password" name="contrasenia"   class="txt_frm" ></div>
-                <div class="txt_box_2" > <input type="password" name="contrasenia2"   class="txt_frm" ></div>
-                
-                <div class="btn_registrar" ><input type="image" src="img/btn-registrar.gif" data-theme="b" onclick = "this.form.action = 'clases/formularios/registrar_user.php'" /></div>
-            </div>
+            <div id="login_registro">
+                <div class="div_login_registro"></div>
+                 <form name="frmloginregistro" action="clases/seguridad/valida_email.php" method="POST">  
+                <div  class="label_box_inicial"><label  class="label_frm">Ingrese su correo electronico</label></div> 
+                <div class="txt_box" ><input type="email" name="correo_electronico" value=""  class="txt_frm" /></div> 
+                <div class="label_empty">&nbsp;</div>
+                <div class="label_empty">&nbsp;</div>
+                <div> <h2 id="error"> </h2></div>
+                <div class="btn_iniciar"><input type="image" src="img/btn-aceptar.gif" /></div>
+                <div class="label_empty">&nbsp;</div>
+                </form> 
+            </div> 
 
         </div>
-
         <!--pie de la pagina-->
-        <div id="footer" >
-
+        <div id="footer">
+        <div class="div_footer_logo" ></div>
+        <div class="div_footer" ></div>
         </div>
     </body>
 </html>

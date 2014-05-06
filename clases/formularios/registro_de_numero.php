@@ -25,6 +25,11 @@ class registro_de_numero {
 
         $conectar = new conexion();
         $con_res = $conectar->conectar();
+        
+        //buscando fecha de sorteo
+        require_once 'clases/seguridad/busca_fecha_soteo.php';
+        $sorteo = new busca_fecha_soteo();
+        $fecha_sorteo = $sorteo->extraer_fecha();
 
         //$fecha_registro_numero;
         //$numero_user = strip_tags($_POST['nombre']); // esta quemado el numero en la pag
@@ -61,9 +66,10 @@ class registro_de_numero {
                     if ($resp == "ok") {
                         $restaNumDispo = new registro_de_numero();
                         $restaNumDispo->restar_cantidad_numeros_disponibles();
+                        echo 'INSERT INTO numeros_por_usuario(id_fk_targeta,id_fk_numero,cantidad,fecha_registro,fecha_sorteo)values ("' . mysql_real_escape_string($id_tarjeta_user) . '","' . mysql_real_escape_string($numero) . '","' . mysql_real_escape_string($cantidadDisponibles) . '","' . mysql_real_escape_string($fecha_actual) . '","' . mysql_real_escape_string($fecha_actual) . '")';
                         // $meter = @mysql_query('INSERT INTO usuarios (nombre,apellido,telefono,cedula,fecha_registro, correo_electronico, correo_electronico2, contrasenia) values ("' . mysql_real_escape_string($nombre) . '","' . mysql_real_escape_string($apellido) . '","' . mysql_real_escape_string($telefono) . '","' . mysql_real_escape_string($cedula) . '","' . mysql_real_escape_string($fecha_actual) . '", "' . mysql_real_escape_string($correo_electronico) . '", "' . mysql_real_escape_string($correo_electronico2) . '", "' . mysql_real_escape_string($contrasenia) . '")');
                         /* 1er query inserta numeros disponible */ $insertNum = @mysql_query('INSERT INTO numeros_por_usuario(id_fk_targeta,id_fk_numero,cantidad,fecha_registro,fecha_sorteo)
-                                                   values ("' . mysql_real_escape_string($id_tarjeta_user) . '","' . mysql_real_escape_string($numero) . '","' . mysql_real_escape_string($cantidadDisponibles) . '","' . mysql_real_escape_string($fecha_actual) . '","' . mysql_real_escape_string($fecha_actual) . '")');
+                                                   values ("' . mysql_real_escape_string($id_tarjeta_user) . '","' . mysql_real_escape_string($numero) . '","' . mysql_real_escape_string($cantidadDisponibles) . '","' . mysql_real_escape_string($fecha_actual) . '","' . mysql_real_escape_string($fecha_sorteo) . '")');
                   
                         echo $insertNum;
 
@@ -71,7 +77,7 @@ class registro_de_numero {
                             $auditar->insertar_auditoria($_SESSION['usuarios'], 
                             "Insert", "numeros_por_usuario", "OK, se ha registrado!");
                 
-                            require_once '../mensajeria/envia_correo.php';
+                            require_once 'clases/mensajeria/envia_correo.php';
                     $enviando = new envia_correo();
                     $enviando->enviar_Correo_confirmacion($_SESSION['usuarios'], "ha comprado el nuemero ".$numero." en PTYLOTTO");
                             $this->respuesta= 'OK, se ha registrado!';

@@ -32,7 +32,7 @@
         ?>
 
 
- <form name="frmRegistroNumero" action="clases/formularios/registro_de_numero.php" method="POST"> 
+ <form name="frmRegistroNumero" action="" method="POST"> 
         <table id="Tabla_01"  width="100%"  border="0" cellpadding="0" cellspacing="0">
             <tr>
 
@@ -61,7 +61,7 @@
                                         </div>
 
                                         <div>
-                                            <div style="border: 0px solid;margin-left:35px; float:left;padding-bottom:6px" ><input type="text" name="nombre" required style="border-right: 1px solid #e6e6e6;border-bottom: 1px solid #e6e6e6;border-left: 1px solid #bfbfbf;border-top: 1px solid #bfbfbf;width: 578px; height: 25px;background-color:#e6e6e6"></div>
+                                            <div style="border: 0px solid;margin-left:35px; float:left;padding-bottom:6px" ><input type="text" name="nombre" value="<?php echo $_SESSION['usuarios'] ?>" disabled required style="border-right: 1px solid #e6e6e6;border-bottom: 1px solid #e6e6e6;border-left: 1px solid #bfbfbf;border-top: 1px solid #bfbfbf;width: 578px; height: 25px;background-color:#e6e6e6"></div>
 
                                         </div>
 
@@ -97,45 +97,19 @@
                         </tr>
                         <tr>
                             <td>
-                                <table border="0" style=" margin-right:auto;margin-left:auto; width:90%; text-align: center"cellpadding="0" cellspacing="0"  > 
-                                    <tr style="height: 25px;font-size:12px; font-family: arial; font-weight: bold; color:#666666"> 
-                                        <td>Fecha</td>
-                                        <td>Numero Comprado</td>
-                                        <td>Cantidad</td>
-                                        <td>Numero de Tarjeta</td>
-                                        <td >Monto</td>
-                                    </tr> 
-                                    <tr style=" font-size:12px; font-family: arial; font-weight: bold; color:#666666;height: 25px;background-color:#e6e6e6"> 
-                                        <td><div style="border: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6"></div></td> 
-                                        <td><div style="border: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6"></div></td>
-                                        <td><div style="border: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6"></div></td>
-                                        <td><div style="border: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6"></div></td>
-                                        <td><div style="border: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6"></div></td>
-                                    </tr> 
-                                    <tr style=" font-size:12px; font-family: arial; font-weight: bold; color:#666666;height: 25px;background-color:#e6e6e6"> 
-                                        <td><div style="border: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6"></div></td> 
-                                        <td><div style="border: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6"></div></td>
-                                        <td><div style="border: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6"></div></td>
-                                        <td><div style="border: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6"></div></td>
-                                        <td><div style="border: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6"></div></td>
-                                    </tr> 
-                                    <tr style=" font-size:12px; font-family: arial; font-weight: bold; color:#666666;height: 25px;background-color:#e6e6e6"> 
-                                        <td><div style="border: 1px solid #bfbfbf;border-top: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6"></div></td> 
-                                        <td><div style="border: 1px solid #bfbfbf;border-top: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6"></div></td>
-                                        <td><div style="border: 1px solid #bfbfbf;border-top: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6"></div></td>
-                                        <td><div style="border: 1px solid #bfbfbf;border-top: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6"></div></td>
-                                        <td><div style="border: 1px solid #bfbfbf;border-top: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6"></div></td>
-                                    </tr> 
-                                </table>
+                                 <?php
+                        include('clases/formularios/lista_de_numeros_comprados.php');
+                        $consultaTar = new lista_de_numeros_comprados();
+                        $consultaTar->muestra_numeros_usuario();
+                        ?>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div style="border: 0px solid;">
-                                    <div style="margin-left:35px;border: 0px solid;padding-bottom: 6px;padding-top:20px;float: left" ><input type="image" src="img/btn-aceptar.gif" data-theme="b"  /></div>                                    
+                                    <div style="margin-left:35px;border: 0px solid;padding-bottom: 6px;padding-top:20px;float: left" ><input type="submit" name="comprar" id="comprar" src="img/btn-aceptar.gif" data-theme="b"  /></div>                                    
                                     <div style="margin-left:35px;border: 0px solid; padding-bottom: 6px; margin-top: 20px;float: left " ><input type="image" src="img/btn-borrar.gif" data-theme="b" onclick = "this.form.action = 'login.php'"/></div>                                                                        
-                                    <div style="margin-left:35px;border: 0px solid; padding-bottom: 6px; margin-top: 20px;float: left " ><input type="image" src="img/btn-registrar-tarjeta.gif" data-theme="b" onclick = "this.form.action = 'Registro_Tarjeta.php'"/></div>
-                                    <div style="margin-left:35px;border: 0px solid; padding-bottom: 6px; margin-top: 20px;float: left " ><input type="image" src="img/btn-borrar.gif" data-theme="b" onclick = "this.form.action = 'clases/seguridad/logout.php'"/></div>                                                                        
+                                    <div style="margin-left:35px;border: 0px solid; padding-bottom: 6px; margin-top: 20px;float: left " ><input type="image" src="img/btn-registrar-tarjeta.gif" data-theme="b" onclick = "this.form.action = 'Registro_Tarjeta.php'"/></div>                                   
                                 </div>
                             </td>
                         </tr>
@@ -161,6 +135,16 @@
             </tr>
         </table>
  </form>
+        
+        <?php
+        
+        if (isset($_POST['comprar'])) {
+            require_once './clases/formularios/registro_de_numero.php';
+            $comprar = new registro_de_numero();
+            $comprar->insertar($_POST['cod_tarjeta'], $_POST['numero'], $_POST['cantidad']);
+            echo '<div style="boredes: solid red 1 px">' . $comprar->respuesta . '</div>';
+        }
+        ?>
 
         <div id="dialog" title="Mensaje">
             <p>Bienbenido al sistema  <?php echo $_SESSION['nombre'] ?></p>

@@ -27,7 +27,7 @@ require_once('clases/seguridad/encriptar.php');
         //se invoca el metodo desentriptar_dato y se le envian dos parametros
         //el primero es la cadena encriptada 
         // el segundo es el key de encriptacion debe ser exactamente el mismo que se uso para encriptarla
-        $resultado_cadena_des = $desencripta->desencriptar_dato("o6KnraGl", "ptylotodeveloper");
+        $resultado_cadena_des = $desencripta->desencriptar_dato("6+mssqQ=", "ptylotodeveloper");
        //el metodo devuelve la cadena desencriptada
         echo '<br>';
         echo 'desencriptada: '.$resultado_cadena_des;

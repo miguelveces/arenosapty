@@ -1,0 +1,162 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 23, 2014, 9:25:14 AM
+    Author     : miguel Veces
+*/
+
+a:link{ color:#9eb73a }
+a:visited{color:#9eb73a}
+a:hover{color:#9eb73a}
+a:active{color:#9eb73a}
+a{
+    text-decoration:none;
+    font-family:arial;
+    font-size: 12px;
+    font-weight:bold;
+}
+body
+{
+    background-image: url(../img/fondo1.jpg_back)
+
+}
+#contenido{
+    background-image: url(../img/bkg_2.jpg);
+    width: 100%;
+    min-height: 29em;
+
+}
+
+#footer
+{  
+    background-image: url(../img/bkg_3.jpg);
+    width: 100%;
+    height: 40px;
+}
+#header{
+    background-image: url(../img/bkg_1.jpg);
+
+    width: 100%;
+    height: 125px;
+     
+}
+#login{
+    margin-top: 1em;
+    margin-left: 15%; 
+    text-align:left;
+    display: inline-block;
+}
+#registro{
+    margin-top: 1em;
+    margin-left: 1%;
+    margin-bottom: 2em;
+    text-align:left;
+    display: inline-block;
+    width: 626px;
+}
+.div_login{
+    margin-left:auto; 
+    margin-right:15px;
+    width:313px; 
+    height: 91px; 
+    background-image: url(../img/inicio-sesion.jpg);
+    background-repeat: no-repeat; 
+    background-size: 313px 91px;
+    
+}
+.div_reg{
+    margin-left:auto; 
+    margin-right:15px;
+    width: 626px; 
+    height: 91px; 
+    background-image: url(../img/nuevo-usuario.jpg);
+    background-repeat: no-repeat; 
+    background-size: 626px 91px;
+    
+}
+
+.estrellas{
+    float:right; 
+    padding-top:20px;
+}
+.label_box_inicial{
+    margin-left:auto;
+    margin-top: -15px;
+    width:290px;
+    padding-bottom: 6px;
+}
+.label_box{
+    margin-left:auto;
+    width:290px;
+    padding-bottom: 6px;
+}
+/*dos columnas*/
+.label_box_2{
+    display: inline-block;
+    margin-left:1em;
+    width:47%;
+    padding-bottom: 6px;
+}
+.label_frm{
+    font-size:12px; 
+    font-family: arial;
+    font-weight: bold; 
+    color:#666666;
+}
+
+.logo{
+    float:left;
+    padding-top:20px;
+}
+/*una columna*/
+.txt_box{
+    margin-left:auto;
+    width:290px;
+    padding-bottom: 6px;
+
+}
+/*dos columnas*/
+.txt_box_2{
+    display: inline-block;
+    margin-left:1em;
+    width:47%;
+    padding-bottom: 6px;
+
+}
+.txt_frm{
+    border-right: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    border-left: 1px solid #bfbfbf;
+    border-top: 1px solid #bfbfbf;
+    width: 240px; 
+    height: 25px;
+    background-color:#e6e6e6;
+}
+.btn_iniciar{
+    margin-left:auto;
+    margin-right:53px;
+    text-align: right; 
+    width:290px; 
+    padding-bottom: 20px;
+}
+.btn_registrar{
+    margin-left:1em;    
+    text-align: left; 
+    width:290px; 
+    padding-bottom: 20px;
+}
+
+.olvida_pwd{
+    margin-left:auto;
+    margin-right:50px;
+    text-align: center; 
+    width:290px; 
+    padding-bottom: 6px;
+}
+
+.txt_box_r{
+    border: 0px solid;margin-right:45px; float:right;padding-bottom:6px
+}

@@ -21,7 +21,7 @@ class valida_usuario {
 
     public function validar() {
       
-        require_once('../procesos/auditoria.php');
+        require_once('../procesos/auditar.php');
         $this->usuario = $_POST["user"];
         $this->password =  $_POST["pass"];
         require_once('../conexion_bd/conexion.php');        
@@ -35,10 +35,10 @@ class valida_usuario {
 
 
         $con_res = $conectado->conectar();  
-echo "estoy dentro";
         if (strcmp($con_res, "ok") == 0) {
             //echo 'Conexion exitosa todo bien';
-            $consulta = "SELECT * FROM usuarios WHERE correo_electronico = '" . $this->usuario . "'";
+            $consulta = "SELECT * FROM usuarios WHERE correo_electronico = '" . $this->usuario . "' and estado = 1";
+            echo $consulta;
             $result = mysql_query($consulta);
 //Validamos si el nombre del administrador existe en la base de datos o es correcto
             if ($row = mysql_fetch_array($result)) {
@@ -60,17 +60,17 @@ echo "estoy dentro";
                     
                     
                     
-                    $auditar = new auditoria();
+                    $auditar = new auditar();
                     $auditar->insertar_auditoria($this->usuario, 
                             "login", "usuarios", "Acaba de inisiar sescion");
-                    echo 'lllllLa Contraseña es incorrecta ';
+                    echo 'La Contraseña es incorrecta ';
                     //Redireccionamos a la pagina: index.php
                     header("Location: ../../registrar_numero.php");
                 } else {
                     //En caso que la contraseña sea incorrecta enviamos un msj y redireccionamos a login.php
                     echo 'La Contraseña es incorrecta ';
                     
-                    $auditar = new auditoria();
+                    $auditar = new auditar();
                     $auditar->insertar_auditoria("desconocido", 
                             "login", "usuarios", "La Contraseña es incorrecta");
                    // header("Location: ../../login.php");
@@ -78,7 +78,7 @@ echo "estoy dentro";
             } else {
                 //en caso que el nombre de administrador es incorrecto enviamos un msj y redireccionamos a login.php
                 echo 'El usuario es Incorrecto ';
-                    $auditar = new auditoria();
+                    $auditar = new auditar();
                     $auditar->insertar_auditoria("desconocido", 
                             "login", "usuarios", "El usuario es Incorrecto");
                 //header("Location: ../../login.php");

@@ -13,12 +13,12 @@ ob_start();
  */
 //Se instancia la clase.
 
-class auditoria {
+class auditar {
 
     private $idUsuario, $ip;
 
     public function insertar_auditoria($usuario, $accion, $tabla, $comentario) {
-        require_once('clases/conexion_bd/conexion.php');
+        require_once('../conexion_bd/conexion.php');
 //conectar('localhost', 'root', '', 'ptyloto');
         $conectar = new conexion();
         $con_res = $conectar->conectar();
