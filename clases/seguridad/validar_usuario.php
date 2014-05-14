@@ -22,9 +22,9 @@ if (strcmp($con_res, "ok") == 0) {
         //y aqui es donde cambiamos el valor 1=desactivado  por valor 0=activado
         $query = "UPDATE usuarios
            SET estado = '1' WHERE   id_usuario = '$idval' AND activacion ='$activate2' ";
-        echo "UPDATE usuarios
-           SET estado = '1' WHERE   id_usuario = '$idval' AND activacion ='$activate2' ";
+        //echo "UPDATE usuariosSET estado = '1' WHERE   id_usuario = '$idval' AND activacion ='$activate2' ";
         mysql_query($query) or die(mysql_error());
+        header("Location: ../../login.php");
 }else{
 echo "activacion incompleta.";         
 }

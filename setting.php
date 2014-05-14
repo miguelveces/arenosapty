@@ -1,6 +1,6 @@
 <?php
 $server="localhost";
-$db="ptyloto2";
+$db="ptyloto";
 $user="root";
 $pass="";
 $version="0.9b";

@@ -1,154 +1,67 @@
 <?php ob_start(); ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html>
     <head>
-        <META http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>PTY Lotto</title>
-        <style>
-
-
-            body
-            {
-                background-image: url(img/fondo1.jpg)
-
-            }
-        </style>
+         <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+       <title>PTY Lotto</title>
+        <meta name="description"	content="Loteria de  Panamá"/>	
         <link rel="stylesheet" href="lib_css/jquery-ui-1.9.2.custom.css">
+         <link rel="stylesheet" href="css/ptylotto.css">
         <script src="lib_js/jquery-1.8.3.js"></script>
         <script src="lib_js/jquery-ui-1.9.2.custom.js"></script>
-        <script src="js/index.js"></script>
+        <script src="js/login.js"></script>
     </head>
     <body>
-        <?php
-//creamos la sesion
-        session_start();
-//validamos si se ha hecho o no el inicio de sesion correctamente
-//si no se ha hecho la sesion nos regresará a login.php
-//esta instruccion debe ir al iniscio de cada pagina
-        if (!isset($_SESSION['usuarios'])) {
-            header('Location: login.php');
-            exit();
-        }
-        ?>
-
-
- <form name="frmRegistroNumero" action="" method="POST"> 
-        <table id="Tabla_01"  width="100%"  border="0" cellpadding="0" cellspacing="0">
-            <tr>
-
-                <td background="img/bkg_1.jpg" height="124" height="116" >
-                    <div>
-                        <div style="float:left;padding-top:12px">  <img src="img/logo.jpg"></div> 
-                        <div style="float:right; padding-top:13px">  <img src="img/estrellas.jpg"></div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-
-
-                <td background="img/bkg_2.jpg"  style=" vertical-align: top; padding-top: 35px ">
-
-                    <table  align="center" width="656"  border="0" cellpadding="0" cellspacing="0" style="background-image: url(img/registro-numero.jpg);background-repeat: no-repeat; background-size: 656px 96px">
-                    
-
-                        <tr>
-                            <td  style=" vertical-align: top; padding-top:60px"  width="656px">
-                                <div>
-                                   
-                                        <div >
-                                            <div style="border: 0px solid;margin-left:35px; float:left;padding-bottom:6px" ><label  style="height: 25px;font-size:12px; font-family: arial; font-weight: bold; color:#666666">Nombre de usuario</label></div>
-                                            <div style="width:60px; height: 25px;border: 0px solid;margin-right:225px; float:right;padding-bottom:6px"></div>
-                                        </div>
-
-                                        <div>
-                                            <div style="border: 0px solid;margin-left:35px; float:left;padding-bottom:6px" ><input type="text" name="nombre" value="<?php echo $_SESSION['usuarios'] ?>" disabled required style="border-right: 1px solid #e6e6e6;border-bottom: 1px solid #e6e6e6;border-left: 1px solid #bfbfbf;border-top: 1px solid #bfbfbf;width: 578px; height: 25px;background-color:#e6e6e6"></div>
-
-                                        </div>
-
-                                        <div>
-                                            <div style=" border: 0px solid;margin-left:35px; float:left;padding-bottom:6px" ><label for="numero" style="height: 25px; font-size:12px; font-family: arial; font-weight: bold; color:#666666">Numero por Comprar</label></div>
-                                            <div style="border: 0px solid;margin-right:237px; float:right;padding-bottom:6px" ><label  style="height: 25px;font-size:12px; font-family: arial; font-weight: bold; color:#666666">Cantidad</label>  </div>
-
-                                        </div>
-
-                                        <div>
-                                            <div style="border: 0px solid; margin-left:35px;float:left;padding-bottom: 6px " ><input type="int" name="numero" class="form-input" maxlength="2" size="1" required style="border-right: 1px solid #e6e6e6;border-bottom: 1px solid #e6e6e6;border-left: 1px solid #bfbfbf;border-top: 1px solid #bfbfbf;width: 240px; height: 25px;background-color:#e6e6e6"></div>
-                                            <div style="border: 0px solid;margin-right:45px; float:right;padding-bottom:6px" ><input type="text" name="cantidad" class="form-input" style="border-right: 1px solid #e6e6e6;border-bottom: 1px solid #e6e6e6;border-left: 1px solid #bfbfbf;border-top: 1px solid #bfbfbf;width: 240px; height: 25px;background-color:#e6e6e6"></div>                    
-                                        </div>
-
-                                        <div >
-                                            <div style="border: 0px solid; margin-left:35px; float:left;padding-bottom: 6px" ><label for="tarj" style="height: 25px;font-size:12px; font-family: arial; font-weight: bold; color:#666666">Numero de tarjeta</label></div>
-                                            <div style="border: 0px solid;margin-right:180px; float:right;padding-bottom:6px"><label  style="height: 25px;font-size:12px; font-family: arial; font-weight: bold; color:#666666">Correo Electrónico</label></div>
-                                        </div>
-
-                                        <div >
-                                            <div style="border:0px solid; margin-left:35px; float:left;padding-bottom: 6px" ><select style="border-right: 1px solid #e6e6e6;border-bottom: 1px solid #e6e6e6;border-left: 1px solid #bfbfbf;border-top: 1px solid #bfbfbf;width: 240px; height: 25px;background-color:#e6e6e6" name="cod_tarjeta"><?php
-                                                    require_once 'clases/seguridad/busca_tarjeta.php';
-                                                    $variable = new busca_tarjeta();
-                                                    $variable->extraer_cod_tarjeta();
-                                                    ?>
-                                                </select></div>
-                                            <div style="border: 0px solid;margin-right:45px; float:right;padding-bottom:20px" ><input type="email" name="correo_electronico" style="border-right: 1px solid #e6e6e6;border-bottom: 1px solid #e6e6e6;border-left: 1px solid #bfbfbf;border-top: 1px solid #bfbfbf;width: 240px; height: 25px;background-color:#e6e6e6"></div>
-                                        </div>
-
-                                </div>
-                            </td> 
-
-                        </tr>
-                        <tr>
-                            <td>
-                                 <?php
-                        include('clases/formularios/lista_de_numeros_comprados.php');
-                        $consultaTar = new lista_de_numeros_comprados();
-                        $consultaTar->muestra_numeros_usuario();
-                        ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div style="border: 0px solid;">
-                                    <div style="margin-left:35px;border: 0px solid;padding-bottom: 6px;padding-top:20px;float: left" ><input type="submit" name="comprar" id="comprar" src="img/btn-aceptar.gif" data-theme="b"  /></div>                                    
-                                    <div style="margin-left:35px;border: 0px solid; padding-bottom: 6px; margin-top: 20px;float: left " ><input type="image" src="img/btn-borrar.gif" data-theme="b" onclick = "this.form.action = 'login.php'"/></div>                                                                        
-                                    <div style="margin-left:35px;border: 0px solid; padding-bottom: 6px; margin-top: 20px;float: left " ><input type="image" src="img/btn-registrar-tarjeta.gif" data-theme="b" onclick = "this.form.action = 'Registro_Tarjeta.php'"/></div>                                   
-                                </div>
-                            </td>
-                        </tr>
-                     
-                    </table>
-
-                </td>
-
-            </tr>
-            <tr>
-
-                <td style="background-color:#fff">
-                    <div style="float:right;padding-right:13px">  
-                        <img src="img/logo-loteria.gif">
-                    </div>
-                </td>
-            </tr>
-            <tr>
-
-                <td background="img/bkg_3.jpg" height="40" >
-
-                </td>
-            </tr>
-        </table>
- </form>
-        
-        <?php
-        
-        if (isset($_POST['comprar'])) {
-            require_once './clases/formularios/registro_de_numero.php';
-            $comprar = new registro_de_numero();
-            $comprar->insertar($_POST['cod_tarjeta'], $_POST['numero'], $_POST['cantidad']);
-            echo '<div style="boredes: solid red 1 px">' . $comprar->respuesta . '</div>';
-        }
-        ?>
-
-        <div id="dialog" title="Mensaje">
-            <p>Bienbenido al sistema  <?php echo $_SESSION['nombre'] ?></p>
+    <?php
+	session_start();
+    		if (!isset($_SESSION['usuarios'])) { header('Location: login.php'); exit(); }
+      ?>
+        <!--encabezado de la pagina-->
+        <div id="header" >
+            <div class="logo">  <img src="img/logo.jpg"/></div> 
+            <div class="estrellas">  <img src="img/estrellas.jpg"/></div>
+             <div class="div_menu"><div class="menu"><a class="menu "href=""> Contactenos</a> </div><div class="menu">|</div><div class="menu"><a class="menu" href=""> Legal</a> </div><div class="menu">|</div> <div class="menu"><a class="menu" href="clases/seguridad/logout.php"> Salir</a></div></div>
         </div>
+        <!--Contenido de la pagina-->
+        <div id="contenido" >
+          <div   id="numero">
+                <div class="div_num"></div>
+                <form name="frmnumero" action="clases/formularios/registro_de_numero.php" method="POST">
+                <div class="label_box_inicial2" ><label  class="label_frm">Nombre de usuario</label></div>                
+                <div  class="txt_box_3" ><input type="text" name="nombre" readonly="readonly" value="<?php echo  $_SESSION['nombre']." ". $_SESSION['apellido'] ?>"  class="txt_frm_3" ></div>
+                <div  class="label_box_2" ><label  class="label_frm">Cedula</label></div>
+                <div  class="label_box_2"><label  class="label_frm">Correo Electrónico</label></div>
+                <div  class="txt_box_2" ><input type="text" name="cedula" readonly="readonly"  value="<?php echo $_SESSION['cedula']  ?>"  class="txt_frm" > </div> 
+                <div  class="txt_box_2" ><input type="email" name="correo_electronico" readonly="readonly"  value="<?php echo $_SESSION['usuarios'] ?>"  class="txt_frm" > </div>
+                <div  class="label_box_2" ><label  class="label_frm">Numero por comprar</label></div>
+                <div  class="label_box_2" ><label  class="label_frm">Cantidad</label>  </div>
+                <div class="txt_box_2" ><input type="int" name="numero" maxlength="2" size="1" required  class="txt_frm" ></div>      
+                <div class="txt_box_2" ><input type="text" name="cantidad"  class="txt_frm" ></div>                               
+                <div  class="label_box_2" ><label  class="label_frm">Numero de tarjeta</label></div>
+                <div class="label_empty2">&nbsp;</div>
+                <div class="txt_box_2" ><select class="txt_frm" name="cod_tarjeta"><?php require_once 'clases/seguridad/busca_tarjeta.php';  
+                $variable = new busca_tarjeta(); 
+                $variable->extraer_cod_tarjeta(); ?>
+                    </select></div>                                        
 
+                 <div> <h2 id="error"> </h2></div>
+                <div class="grd_box"> <?php include('clases/formularios/lista_de_numeros_comprados.php');$consultaTar = new lista_de_numeros_comprados();$consultaTar->muestra_numeros_usuario(); ?></div>
+                <div class="btn_registrar" ><input type="image" src="img/btn-aceptar.gif" value="Crear" name="crear" /></div>
+                </form>
+                <form name="frmnumeroclear" action="" method="POST">
+                 <div class="btn_atras" ><input type="image" src="img/btn-borrar.gif" onclick="document.frmnumeroclear.reset();"/></div>
+                </form>
+                <form name="frmtarjeta" action="registro_tarjeta.php" method="POST">
+                 <div class="btn_regitro_tarjeta" ><input type="image" src="img/btn-registrar-tarjeta.gif" /></div>
+                </form>
+                <div id="mensaje" class="mensajeOk" ></div>
+            </div>
+            
+        </div>
+        <!--pie de la pagina-->
+        <div id="footer">
+        <div class="div_footer_logo" ></div>
+        <div class="div_footer" ></div>
+        </div>
     </body>
 </html>

@@ -17,49 +17,50 @@ class lista_de_numeros_comprados {
 //funcion para buscar Tarjetas en Tabla de recibidas
     
     public function muestra_numeros_usuario() {
-        
+        session_start();
         require_once('clases/conexion_bd/conexion.php');
         //instaciamos la conexion
         $conectado = new conexion();
         $conrespuesta = $conectado->conectar();
 	
-	
-           if (strcmp($conrespuesta, "ok") == 0) {
-            echo '<table border="0" style=" margin-right:auto;margin-left:auto; width:90%; text-align: center"cellpadding="0" cellspacing="0">';
-            echo '<thead>';
-                echo '<tr style=" font-size:12px; font-family: arial; font-weight: bold; color:#666666;height: 25px;background-color:#e6e6e6">';
-                    echo '<th style="border: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6">Usuario</th>';
-                    echo '<th style="border: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6">Tarjeta</th>';
-                    echo '<th style="border: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6">Numero</th>';
-                    echo '<th style="border: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6">Cantidad</th>';
-                    echo '<th style="border: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6">Total Pagado</th>';
-                    echo '<th style="border: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6">Fecha de registro</th>';
-                echo '</tr>';
-            echo '</thead>';
-            echo '<tbody>'; 
-            $consultas = "select b.correo_electronico, a.id_fk_targeta, a.id_fk_numero, a.cantidad, a.fecha_registro from numeros_por_usuario a, usuarios b, tarjetas_por_usuarios c"
-                            . " where a.id_fk_targeta = c.codigo_targeta and b.id_usuario = c.id_fk_usuario and a.fecha_sorteo = (select DATE_FORMAT(fecha, '%Y-%m-%d') from restricciones_venta order by fecha desc LIMIT 1)";
-  		    $query = @mysql_query($consultas);
-                    //echo $consultas;
-		   
-                   while ($registro = mysql_fetch_array($query)){
-         	   echo '<tr style=" font-size:12px; font-family: arial; font-weight: bold; color:#666666;height: 25px;background-color:#e6e6e6">';
-                       echo '<td style="border: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6">'.$registro['0'].'</td>';
-		       echo '<td style="border: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6">'.$registro['1'].'</td>';
-		       echo '<td style="border: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6">'.$registro['2'].'</td>';
-                       echo '<td style="border: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6">'.$registro['3'].'</td>';
-                       $totalAPagar = $registro['2'] * $registro['3'] * 0.25;
-                       echo '<td style="border: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6">'.$totalAPagar.'</td>';
-		       echo '<td style="border: 1px solid #bfbfbf;height: 25px;background-color:#e6e6e6">'.$registro['4'].'</td>';
-		       echo '</tr > ';
-		        }  	// fin del while
-                 echo ' </tbody>';
-                 echo ' </table>'; 
-               echo "</div>";
+	 if (strcmp($conrespuesta, "ok") == 0) {
+echo "<table border='0' style='margin-right:auto;margin-left:auto; width:100%; text-align: center' cellpadding='0' cellspacing='0' > ";
+    echo "<tr style='height: 25px;font-size:13px; font-family: arial; font-weight: bold; color:#666666'> ";
+        echo "<td style='width:115px'><div style='border-bottom: 1px solid #bfbfbf;'>Fecha de Sorteo</div></td>";
+        echo "<td style='width:90px'><div style='border-bottom: 1px solid #bfbfbf;'># Comprado</div></td>";
+        echo "<td style='width:70px'><div style='border-bottom: 1px solid #bfbfbf;'>Cantidad</div></td>";
+        echo "<td style='width:70px'><div style='border-bottom: 1px solid #bfbfbf;'>Monto</div></td> ";
+        echo "<td><div style='border-bottom: 1px solid #bfbfbf;'># de Tarjeta</div></td>	";
+        echo "<td style='width:115px'><div style='border-bottom: 1px solid #bfbfbf;'>Fecha</div></td> ";
+    echo "</tr> ";
+echo "</table>";
+echo "<div class='div_grid' >";
+echo "<table  class='grid_tbl' style='height:90px; width:100%; text-align: center' > ";
+$query = @mysql_query("SELECT a.fecha_sorteo ,IF(a.id_fk_numero  <10, CONCAT('0',CAST(a.id_fk_numero AS CHAR)),  a.id_fk_numero)as id_fk_numero, a.cantidad,a.id_fk_targeta,ADDTIME( a.fecha_registro,  '-5:00:00.00' )  
+FROM numeros_por_usuario a, tarjetas_por_usuarios c
+WHERE a.id_fk_targeta = c.codigo_targeta
+AND c.id_fk_usuario =".$_SESSION['id']."
+ORDER BY a.fecha_registro DESC "); 
 
-           } else {
+while ($registro = mysql_fetch_array($query)){
+    echo "<tr>";
+        echo "<td style='width:110px'><div>".$registro['0']."</div></td>";
+        echo "<td style='width:85px'><div>".$registro['1']."</div></td>";
+        echo "<td style='width:65px'><div>".$registro['2']."</div></td>";
+         $totalAPagar =  $registro['2'] * 0.25;
+        echo "<td style='width:65px'><div>".$totalAPagar."</div></td>";
+        echo "<td><div>".$registro['3']."</div></td>";
+        echo "<td style='width:90px'><div>".$registro['4']."</div></td>";
+    echo "</tr> ";
+     }  	// fin del while
+echo "</table>"; 
+echo "</div>";
+
+           }else {
                 //
-				echo '<script>alert("No hay Conexion a la Base de Datos")</script>';              
+               $_SESSION['mensaje'] = 'No hay Conexion a la Base de Datos';
+            $_SESSION['capitan'] = 2;
+				
             }
             mysql_free_result($query);
             $conectado->desconectar();

@@ -12,10 +12,14 @@ a:link{ color:#9eb73a }
 a:visited{color:#9eb73a}
 a:hover{color:#9eb73a}
 a:active{color:#9eb73a}
+a.menu:link{ color:#666666 }
+a.menu:visited{color:#666666}
+a.menu:hover{color:#666666}
+a.menu:active{color:#666666}
 a{
     text-decoration:none;
     font-family:arial;
-    font-size: 12px;
+    font-size: 13px;
     font-weight:bold;
 }
 body
@@ -45,39 +49,46 @@ body
     width: 100%;
     height: 125px;
 }
-#login{
-    margin-top: 2em;
-    margin-left: 25%;
-    display: inline-block;
+
+#panel_login{
+    margin:auto;
+    width: 690px;
+    padding-top:15px;
 }
 #login_registro{
     margin-top: 2em;
     display: inline-block;
+    float:left;
    
+}
+#login{
+    margin-top: 2em; 
+    display: inline-block;
+    float:left;
    
 }
 #registro{
-    margin-top: 2em;
-    margin-left: 25%;
-    display: inline-block;
-   
+    margin:auto;
+    width: 656px;
+    padding-top:15px;
 }
 #numero{
-    margin-top: 2em;
-    margin-left: 25%;
-    display: inline-block;
-   
+     margin:auto;
+     width: 656px;
+     padding-top:15px;
 }
 #tarjeta{
-    margin-top: 2em;
-    margin-left: 25%;
-    display: inline-block;
-   
+     margin:auto;
+     width: 656px;
+     padding-top:15px;
 }
 #pass{
-    margin-top: 2em;
+   /* margin-top: 2em;
     margin-left: 35%;
-    display: inline-block;
+    display: inline-block;*/
+     margin:auto;
+     width: 321px;
+     padding-top:15px;
    
 }
 
@@ -101,44 +112,31 @@ body
     
 }
 .div_reg{
-    width: 656px; 
     height: 96px; 
-    background-image: url(../img/nuevo-usuario.jpg);
-    background-repeat: no-repeat; 
-    background-size: 656px 96px;
+    background: url(../img/nuevo-usuario.jpg)no-repeat center; 
+    
     
 }
 .div_num{
-    width: 656px; 
     height: 96px; 
-    background-image: url(../img/registro-numero.jpg);
-    background-repeat: no-repeat; 
-    background-size: 656px 96px;
+    background: url(../img/registro-numero.jpg)no-repeat center;
     
 }
 .div_tarj{
-    width: 656px; 
     height: 96px; 
-    background-image: url(../img/registro-tarjeta.jpg);
-    background-repeat: no-repeat; 
-    background-size: 656px 96px;
+    background: url(../img/registro-tarjeta.jpg)no-repeat center;
     
 }
 .div_pass{
-    margin:auto; 
-    width:321px; 
     height: 96px; 
-    background-image: url(../img/olvido-contrasena.jpg);
-    background-repeat: no-repeat; 
-    background-size: 321px 96px;
+    background: url(../img/olvido-contrasena.jpg)no-repeat center;
     
 }
 
 .div_grid
-{    
-     overflow: auto;
-     width:100%;
-     height: 150px;
+{   overflow: auto;
+    width:100%;
+    height: 150px;
 }
 .div_footer_logo{
     width: 100%;
@@ -160,6 +158,22 @@ body
     float:right; 
     padding-top:20px;
 }
+.div_menu{
+    float: right;
+    padding-top: 5px;
+    margin-right: -130px;
+    font-size: 13px;
+    font-family: arial;
+    font-weight: bold;
+    color: #666666;
+    height: 12px;
+    
+}
+.menu{
+    display: inline-block;
+    padding-left: 5px;
+    padding-right: 5px;
+}
 .label_box_inicial{
     margin-left:auto;
     margin-top: -15px;
@@ -173,16 +187,15 @@ body
 }
 /*dos columnas*/
 .label_box_inicial2{
-    margin-top: -15px;
     display: inline-block;
     margin-left:2.5em;
-    width:290px;
+     width:280px;
     padding-bottom: 6px;
 }
 .label_box_2{
     display: inline-block;
     margin-left:2.5em;
-    width:290px;
+    width:280px;
     padding-bottom: 6px;
 }
 /*label empty*/
@@ -201,10 +214,9 @@ body
    
 }
 .label_frm{
-    font-size:12px; 
     font-family: arial;
-    font-weight: bold; 
     color:#666666;
+    font-size: 16px;
 }
 
 .logo{
@@ -222,14 +234,12 @@ body
 .txt_box_2{
     display: inline-block;
     margin-left:2.5em;
-    width:290px;
+    width:280px;
     padding-bottom: 6px;
 
 }
 .txt_box_3{
-    /*display: inline-block;*/
     margin-left:2.5em;
-    width:580px;
     padding-bottom: 6px;
 
 }
@@ -241,6 +251,7 @@ body
     width: 240px; 
     height: 25px;
     background-color:#e6e6e6;
+    font: 16px arial,sans-serif;
 }
 .txt_frm_3{
     border-right: 1px solid #e6e6e6;
@@ -250,6 +261,7 @@ body
     width: 575px; 
     height: 25px;
     background-color:#e6e6e6;
+    font: 16px arial,sans-serif;
 }
 .btn_iniciar{
     margin-left:auto;
@@ -292,7 +304,6 @@ body
     border: 0px solid;margin-right:45px; float:right;padding-bottom:6px
 }
 .grd_box{
-    /*display: inline-block;*/
     margin-left:2.5em;
     width:580px;
     padding-bottom: 20px;
@@ -304,7 +315,51 @@ body
     
     
 }
-
+.mensajeOk1{
+     /*border-radius: 0.4em;*/
+    border: solid green 2px;
+    background-color: #ffc;
+    font-size: 1em;
+    padding: 1px;
+    margin-top: 21em;
+    min-height:  2em;
+    width: 90%;
+    margin-left: 5%;
+    padding-left: 12px;
+    border: 1px solid rgb(255, 204, 51);
+    font-family: arial,helvetica,clean,sans-serif;
+    color: #f03;
+    font-weight: bold;
+    
+}
+.mensajeOk{
+     /*border-radius: 0.4em;*/
+    border: solid green 2px;
+    background-color: #ffc;
+    font-size: 1em;
+    padding: 1px;    
+    min-height:  2em;
+    width: 90%;
+    margin-left: 5%;
+    padding-left: 12px;
+    border: 1px solid rgb(255, 204, 51);
+    font-family: arial,helvetica,clean,sans-serif;
+    color: #f03;
+    font-weight: bold;
+    
+}
+.mensajeBad{
+    /*border-radius: 1px;*/
+    border: solid red 2px;
+    background-color: #F7819F;
+    font-size: 1em;
+    padding: 1px;
+    margin-top: 21em;
+    min-height:  2em;
+    width: 90%;
+    margin-left: 5%;
+     color: #f03;
+}
 .grid_tbl td
 {
      font-size:12px; 
@@ -316,15 +371,4 @@ body
      border: 1px solid #bfbfbf;
      padding: 2px
     
-}
-
-.mensaje{
-    border:solid red 2px;
-}
-
-#reg{
-    background-color:#FF0000;
-    background:url(../img/btn-registrar.gif);
-    width: 3em;
-    border-radius: 2px 2px;
 }

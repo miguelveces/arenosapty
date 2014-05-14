@@ -26,7 +26,7 @@ class buscar_id_usuario {
         $con_res = $conectado->conectar();
 
         if (strcmp($con_res, "ok") == 0) {
-            echo 'Conexion exitosa todo bien ';
+            //echo 'Conexion exitosa todo bien ';
             $var = "SELECT id_usuario FROM usuarios WHERE correo_electronico= '" . $this->usuario . "'";
 
 //rtonunez@gmail.com

@@ -1,4 +1,4 @@
-<?php 
+<?php
 ob_start();
 /**
  * Esta clase valida si el usuario existe en la base de datos

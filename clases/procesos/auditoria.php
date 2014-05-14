@@ -18,7 +18,8 @@ class auditoria {
     private $idUsuario, $ip;
 
     public function insertar_auditoria($usuario, $accion, $tabla, $comentario) {
-        require_once('clases/conexion_bd/conexion.php');
+        //require_once('http://localhost:3515/ptydeveloper/clases/conexion_bd/conexion.php');
+        require_once('../conexion_bd/conexion.php');
 //conectar('localhost', 'root', '', 'ptyloto');
         $conectar = new conexion();
         $con_res = $conectar->conectar();
