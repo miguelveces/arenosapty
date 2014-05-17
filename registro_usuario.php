@@ -13,7 +13,7 @@ session_unset("captan");
          <link rel="stylesheet" href="css/ptylotto.css">
         <script src="lib_js/jquery-1.8.3.js"></script>
         <script src="lib_js/jquery-ui-1.9.2.custom.js"></script>
-        <script src="js/login.js"></script>
+        <script src="js/registro_usuario.js"></script>
     </head>
     <body>
         <!--encabezado de la pagina-->

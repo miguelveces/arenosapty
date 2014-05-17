@@ -23,7 +23,7 @@
                 <div class="div_pass"></div>
                 <form name="frmpass" action="clases/seguridad/recupera_contrasenia.php" method="POST">                              
                 <div  class="label_box" ><label  class="label_frm">Correo Electrónico</label></div>
-                <div class="txt_box" ><input type="email" name="correo_electronico"    class="txt_frm" ></div>                                        
+                <div class="txt_box" ><input type="text" name="correo_electronico"    class="txt_frm" ></div>                                        
                 <div> <h2 id="error"> </h2></div>
                  <div id="mensaje" class="mensajeOk1" ></div>
                 <div class="btn_registrar" ><input type="image" src="img/btn-enviar.gif"  /></div>

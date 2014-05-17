@@ -10,7 +10,16 @@ $insertar = new registrar_user;
 $insertar->insertar();
 
 class registrar_user {
-
+ 
+  private $nombre;
+  private $apellido; 
+  private $cedula;
+  private $telefono;
+  private $correo_electronico;
+  private $correo_electronico2;
+  private $contrasenia;
+  private $contrasenia2;
+ 
 //costructor de la clase por si deseas inicailizar variables
     public function __construct() {
         
@@ -27,16 +36,85 @@ class registrar_user {
         
         return $retorno;
     }
-
+    
     public function insertar() {
         session_start();
         //para grabar la auditori 
         require_once('../procesos/auditoria.php');
+            $this->nombre = $_POST['nombre'];
+            $this->apellido = $_POST['apellido'];
+            $this->cedula = $_POST['cedula'];
+            $this->telefono = $_POST['telefono'];
+            $this->correo_electronico = $_POST['correo_electronico'];
+            $this->correo_electronico2 = $_POST['correo_electronico2'];       
+            $this->contrasenia = $_POST['contrasenia'];
+            $this->contrasenia2 = $_POST['contrasenia2'];   
         $auditar = new auditoria();
 
         require_once('../conexion_bd/conexion.php');
         require_once('../seguridad/encriptar.php');
 //conectar('localhost', 'root', '', 'ptyloto');
+                $validausuario = new registrar_user();
+        $respuesta = $validausuario->requerido($this->nombre,$this->apellido,$this->cedula,$this->telefono,$this->correo_electronico,$this->correo_electronico2,$this->contrasenia,$this->contrasenia2);
+       // echo $respuesta;
+        /*if ($respuesta == 1) {
+            $_SESSION['mensaje'] = "Completa el campo correo electronico";
+            $_SESSION['capitan'] = 2;
+            header("Location: ../../recupera_pwd.php");
+            exit();
+        }*/
+        switch ($respuesta) {
+            case 1:
+             $_SESSION['mensaje'] = "Todos los Campos estan Vacios llenelos por favor";
+             $_SESSION['capitan'] = 2;
+             header("Location: ../../recupera_pwd.php");
+                break;
+            case "N":
+             $_SESSION['mensaje'] = "Completa el campo Nombre";
+             $_SESSION['capitan'] = 2;
+             header("Location: ../../recupera_pwd.php");
+                break;
+            case "A":
+             $_SESSION['mensaje'] = "Completa el campo Apellido";
+             $_SESSION['capitan'] = 2;
+             header("Location: ../../recupera_pwd.php");
+                break;
+            case "C":
+             $_SESSION['mensaje'] = "Completa el campo Cedula";
+             $_SESSION['capitan'] = 2;
+             header("Location: ../../recupera_pwd.php");
+                break;
+            case "T":
+             $_SESSION['mensaje'] = "Completa el campo Telefono";
+             $_SESSION['capitan'] = 2;
+             header("Location: ../../recupera_pwd.php");
+                break;
+            case "C1":
+             $_SESSION['mensaje'] = "Completa el campo Correo Electronico 1";
+             $_SESSION['capitan'] = 2;
+             header("Location: ../../recupera_pwd.php");
+                break;
+            case "C2":
+             $_SESSION['mensaje'] = "Completa el campo Correo Electronico 2";
+             $_SESSION['capitan'] = 2;
+             header("Location: ../../recupera_pwd.php");
+             break;
+            case "P1":
+             $_SESSION['mensaje'] = "Completa el campo Password";
+             $_SESSION['capitan'] = 2;
+             header("Location: ../../recupera_pwd.php");
+             break;            
+            case "P2":
+             $_SESSION['mensaje'] = "Completa el campo Repetir Contraseña";
+             $_SESSION['capitan'] = 2;
+             header("Location: ../../recupera_pwd.php");
+                break;
+            default:
+                echo '$respuesta no es igual a 1, N,A,T,C1,C2,P1,P2';
+        }
+
+
+
         $conectar = new conexion();
         $con_res = $conectar->conectar();
 
@@ -65,8 +143,11 @@ class registrar_user {
 //                 if ($existe = @mysql_fetch_object($queryC)) {
 //                  echo '<div align="center"> La cedula: ' . $cedula . 'ya existe.</div> ';
 //                  } 
+                session_unset('mensaje');
+                session_unset('capitan');
                 $_SESSION['mensaje'] = "La cedula o el correo ya existe";
-                 $_SESSION['capitan'] = 2;
+                 $_SESSION['capitan'] = 3;
+
             } else {
                 //agregamos la variable $activate que es un numero aleatorio de  
                   //20 digitos crado con la funcion genera_random de mas arriba
@@ -119,8 +200,9 @@ class registrar_user {
                 } else {
                     $auditar->insertar_auditoria("desconocido", "Insert", "usuarios", "Hubo un error en el registro.");
                    
-                     $_SESSION['mensaje'] = 'Hubo un error en el registro. '.$insert;
-                     $_SESSION['capitan'] = 2;
+                   
+                   //  $_SESSION['mensaje'] = 'Hubo un error en el registro. '.$insert;
+                   //  $_SESSION['capitan'] = 2;
 //echo 'fecha'.$date.'';  
                 }
             }
@@ -129,9 +211,44 @@ class registrar_user {
         } else {
             $auditar->insertar_auditoria("desconocido", "conexion", "Base de datos", " Ocurrio un problema al intentar conectar a la base de datos");
             echo 'Ocurrio un problema al intentar conectar a la base de datos';
-            $_SESSION['mensaje'] = 'Hubo un error en el registro. '.$insert;
-            $_SESSION['capitan'] = 2;
+         //   $_SESSION['mensaje'] = 'Hubo un error en el registro. '.$insert;
+         //   $_SESSION['capitan'] = 2;
         }
+    }
+       function requerido($valor,$valor2,$valor3,$valor4,$valor5,$valor6,$valor7,$valor8) {
+        
+           $valor = trim($valor);
+        $valor2 = trim($valor2);
+        $valor3 = trim($valor3);
+        $valor4 = trim($valor4);
+        $valor5 = trim($valor5);
+        $valor6 = trim($valor6);
+        $valor7 = trim($valor7);
+        $valor8 = trim($valor8);                        
+        if (empty($valor) && empty($valor2) && empty($valor3)&& empty($valor4)&& empty($valor5)&& empty($valor6)&& empty($valor7)&& empty($valor8) ) {
+            $respuestaFinal= true;
+        } elseif (empty($valor)) {
+            $respuestaFinal= "N";     //Nombre vacio
+        } elseif (empty($valor2)) {
+            $respuestaFinal= "A";     //apellido vacio
+        } elseif (empty($valor3)) {
+           $respuestaFinal= "C";     //cedula vacia
+        } elseif (empty($valor4)) {
+            $respuestaFinal= "T";     // Telefono vacio
+        } elseif (empty($valor5)) {
+           $respuestaFinal= "C1";     // Correo 1 vacio
+        } elseif (empty($valor6)) {
+            $respuestaFinal= "C2";      // Correo 2 vacio
+        } elseif (empty($valor7)) {
+            $respuestaFinal= "P1";      // contraseña vacia
+        } elseif (empty($valor8)) {
+            $respuestaFinal= "P2";      //  repetir contraseña vacia    
+        } elseif (preg_match("/^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6}$/", $valor)) {
+            $respuestaFinal= false;
+        } else {
+            $respuestaFinal= true;
+        }
+        return $respuestaFinal;
     }
 
 }

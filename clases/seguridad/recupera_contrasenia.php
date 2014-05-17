@@ -18,6 +18,17 @@ class recupera_conrasenia {
         $this->usuario = $_POST["correo_electronico"];        
         require_once('../conexion_bd/conexion.php');                
         
+        $validausuario = new recupera_conrasenia();
+        $respuesta = $validausuario->requerido($this->usuario);
+       // echo $respuesta;
+        if ($respuesta == 1) {
+            $_SESSION['mensaje'] = "Completa el campo correo electronico";
+            $_SESSION['capitan'] = 2;
+            header("Location: ../../recupera_pwd.php");
+            exit();
+        }
+        
+        
         $conectado = new conexion();
 
 
@@ -102,6 +113,16 @@ class recupera_conrasenia {
             $auditar = new auditoria();
                     $auditar->insertar_auditoria("desconocido", 
                             "login", "usuarios", "Fallo la comexion a la base de datos");
+        }
+    }
+    function requerido($valor) {
+        $valor = trim($valor);
+        if (empty($valor)) {
+            return true;
+        } elseif (preg_match("/^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6}$/", $valor)) {
+            return false;
+        } else {
+            return true;
         }
     }
 
