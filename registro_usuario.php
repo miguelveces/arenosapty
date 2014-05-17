@@ -1,5 +1,8 @@
-<?php ob_start(); ?>
-<?php session_start(); ?>
+<?php ob_start();
+session_start(); 
+session_unset("mensaje");
+session_unset("captan");
+?>
 <!DOCTYPE html>
 <html>
     <head>
