@@ -17,7 +17,7 @@ class lista_de_numeros_comprados {
 //funcion para buscar Tarjetas en Tabla de recibidas
     
     public function muestra_numeros_usuario() {
-        session_start();
+       // session_start();
         require_once('clases/conexion_bd/conexion.php');
         //instaciamos la conexion
         $conectado = new conexion();
