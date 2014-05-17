@@ -5,9 +5,9 @@ ob_start();
  *
  * @author miguel veces
  */
-//$ip = new getIp();
-//$mensaje = $ip->getRealIP();
-//echo $mensaje;
+$ip = new getIp();
+$mensaje = $ip->getRealIP();
+echo $mensaje;
 class getIp {
    function getRealIP() {
     //si el usuario tiene una direccion con ip compartido

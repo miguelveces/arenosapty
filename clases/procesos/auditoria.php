@@ -42,7 +42,7 @@ class auditoria {
                     $this->idUsuario = 0;
                 }
                  if (strcmp($usuario, "desconocido") == 0) {
-                     $this->idUsuario = 11;
+                     $this->idUsuario = 66;
                  }
                 require_once 'getIp.php';
                 $traerIp = new getIp();

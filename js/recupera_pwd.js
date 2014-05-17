@@ -19,7 +19,7 @@ $(function() {
                     console.log(capitanrecibido);
                     
                     console.log(mensaje);
-                 if (capitanrecibido == 1)
+                 if (capitanrecibido == 2)
                 {
                     //mensaje 
                     $("#mensaje").fadeIn();
@@ -27,17 +27,17 @@ $(function() {
                     $("#mensaje").text(mensaje);
                     $("#mensaje").css("border", "solid #fc3 1px");
                 }
-                else if (capitanrecibido == 2) {
-                    //error
-                    $("#mensaje").fadeOut();
-                    console.log(mensaje);
-//                    $("#mensaje").text(mensaje);
-//                    $("#mensaje").css("border", "solid #fc3 1px");
-                }
+//                else if (capitanrecibido == 2) {
+//                    //error
+//                    $("#mensaje").fadeOut();
+//                    console.log(mensaje);
+////                    $("#mensaje").text(mensaje);
+////                    $("#mensaje").css("border", "solid #fc3 1px");
+//                }
                 else {
                     //cualquier otra cosa no deberia mostrarse al usuario
                     $("#mensaje").text("");
-                    $("mensaje").fadeout();
+                    $("mensaje").fadeOut();
                 }
 
                              

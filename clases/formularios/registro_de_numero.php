@@ -30,7 +30,13 @@ class registro_de_numero {
 
         $id_tarjeta_user = strip_tags($_POST['cod_tarjeta']);
         $numero = strip_tags($_POST['numero']);
-        if ($numero < 10) {
+       $cantidad_validado = $this->valida_saldo($_POST['cantidad']);
+       if ($cantidad_validado == 1){
+//           $_SESSION['mensaje'] = "TIENE SALDO DISPONIBLE";
+//                $_SESSION['capitan'] = 1;
+//                header("Location: ../../registrar_numero.php");
+           
+               if ($numero < 10) {
             $numero = "0" . $numero;
         }
         $cantidadDisponibles = strip_tags($_POST['cantidad']);
@@ -168,6 +174,22 @@ class registro_de_numero {
             $_SESSION['capitan'] = 2;
             header("Location: ../../registrar_numero.php");
         }
+           
+           
+       }
+       else{
+           $_SESSION['mensaje'] = "NO TIENE SALDO DISPONIBLE";
+                $_SESSION['capitan'] = 2;
+                header("Location: ../../registrar_numero.php");
+       }
+        
+        
+
+        
+        
+        
+        
+        
     }
 
     function restar_cantidad_numeros_disponibles() {
@@ -420,6 +442,46 @@ class registro_de_numero {
             return $this->$propiedad;
         }
         return null;
+    }
+
+    function valida_saldo($cantidad) {
+        //   require_once('../procesos/auditoria.php');
+        $auditar7 = new auditoria();
+        require_once('../conexion_bd/conexion.php');
+        $valorRetornado;
+        $conectado = new conexion();
+        $con_res = $conectado->conectar();
+        $cantidad_total = $cantidad * 0.25;
+        if (strcmp($con_res, "ok") == 0) {
+            // echo 'Conexion exitosa todo bien ';
+//            $saldo = "select a.saldo from   tarjetas_recibidas a, tarjetas_por_usuarios b
+//            where b.codigo_targeta=a.codigo_targeta and a.codigo_targeta= " . $cod . " and a.registrada_sistema=TRUE and saldo > " . $con_res . "";
+            $saldo = "select  count(*) from tarjetas_recibidas where codigo_targeta = ".$_POST['cod_tarjeta']." and saldo >= " .$cantidad_total;
+
+
+            //echo $consulta;
+            $result = mysql_query($saldo);
+//Validamos si el nombre del administrador existe en la base de datos o es correcto
+            if ($row = mysql_fetch_array($result)) {
+//Si el usuario es correcto ahora validamos su contraseña
+                //Falta validar es estado del usuario
+                $numeroTarjetas = $row[0];
+                if ($numeroTarjetas > 0) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+
+                $conectado->desconectar();
+            } else {
+                return 0;
+            }
+        } else {
+            $auditar7->insertar_auditoria($_SESSION['usuarios'], "Conexion", "Base de datos", "Ocurrio un problema al intentar conectar a la base de datos");
+            $_SESSION['mensaje'] = 'Problemas de conexión';
+            $_SESSION['capitan'] = 2;
+            return 0;
+        }
     }
 
 }

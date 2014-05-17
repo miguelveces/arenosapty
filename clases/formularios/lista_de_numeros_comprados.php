@@ -55,11 +55,13 @@ while ($registro = mysql_fetch_array($query)){
      }  	// fin del while
 echo "</table>"; 
 echo "</div>";
+echo date("r");
+echo "<div><label>Tiempo que resta para comprar:</label></div>";
 
            }else {
                 //
-               $_SESSION['mensaje'] = 'No hay Conexion a la Base de Datos';
-            $_SESSION['capitan'] = 2;
+             $_SESSION['mensaje'] = 'No hay Conexion a la Base de Datos';
+             $_SESSION['capitan'] = 2;
 				
             }
             mysql_free_result($query);

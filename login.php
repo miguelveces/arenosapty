@@ -28,6 +28,7 @@
                         <div class="label_box"><label for="pwd" class="label_frm">Contrase&ntilde;a</label></div>
                         <div class="txt_box"><input type="password" name="pass" id="pwd" value="" placeholder="contrase&ntilde;a"  class="txt_frm"  />    </div>
                         <div> <h2 id="error"> </h2></div>
+                         <div id="mensaje" class="mensajeOk1" ></div>
                         <div class="btn_iniciar"><input type="image" src="img/btn-inicio.gif"/></div>
                         <div class="olvida_pwd"><a href="recupera_pwd.php"> &iquest;Ha olvidado su contrase&ntilde;a?</a></div>
                     </form> 
@@ -45,7 +46,7 @@
                         <div class="label_empty">&nbsp;</div>
                     </form> 
                 </div> 
-                <div id="mensaje" class="mensajeOk1" ></div>
+               
             </div>
         </div>
         <!--pie de la pagina-->

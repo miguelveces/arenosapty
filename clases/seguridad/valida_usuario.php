@@ -97,7 +97,7 @@ class valida_usuario {
                 echo 'En caso que el nombre de administrador es incorrecto enviamos un msj y redireccionamos a login.php';
                 //echo 'El usuario es Incorrecto ';
                 $_SESSION['mensaje'] = "El usuario es Incorrecto";
-                $_SESSION['capitan'] = 2;
+                $_SESSION['capitan'] = 1;
                 $auditar = new auditoria();
                 $auditar->insertar_auditoria("desconocido", "login", "usuarios", "El usuario es Incorrecto");
                 header("Location: ../../login.php");
@@ -114,7 +114,7 @@ class valida_usuario {
         } else {
             //echo 'Algo anda mal';
             $_SESSION['mensaje'] = "Fallo la comexion a la base de datos";
-            $_SESSION['capitan'] = 2;
+            $_SESSION['capitan'] = 1;
             $auditar = new auditoria();
             $auditar->insertar_auditoria("desconocido", "login", "usuarios", "Fallo la comexion a la base de datos");
         }

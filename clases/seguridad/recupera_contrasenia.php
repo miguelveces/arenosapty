@@ -13,7 +13,7 @@ class recupera_conrasenia {
     private $usuario; //$_POST["admin"];
    
     public function recupera() {
-      
+       session_start();
         require_once('../procesos/auditoria.php');
         $this->usuario = $_POST["correo_electronico"];        
         require_once('../conexion_bd/conexion.php');                
@@ -62,7 +62,7 @@ class recupera_conrasenia {
                                </tr>
                             </table>');         
                     //Creamos sesión
-                    session_start();
+                   
                     //Almacenamos el nombre de usuario en una variable de sesión usuario
                     $_SESSION['usuarios'] = $this->usuario;
                     $_SESSION['cedula'] = $row["cedula"];
@@ -81,11 +81,16 @@ class recupera_conrasenia {
                     header("Location: ../../login.php");             
             } else {
                 //en caso que el nombre de administrador es incorrecto enviamos un msj y redireccionamos a login.php
-                echo 'El usuario no existe ';
+                session_unset('mensaje');
+                session_unset('capitan');
+                $_SESSION['mensaje'] = "El Correo no existe";
+                 $_SESSION['capitan'] = 2;
+                 
+               // echo 'El usuario no existe vv';
                     $auditar = new auditoria();
                     $auditar->insertar_auditoria("desconocido", 
                             "login", "usuarios", "El usuario no existe");
-                //header("Location: ../../login.php");
+                header("Location: ../../recupera_pwd.php");
             }
 
 //Mysql_free_result() se usa para liberar la memoria empleada al realizar una consulta

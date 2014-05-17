@@ -53,6 +53,7 @@
                 </form>
                 <form name="frmtarjeta" action="registro_tarjeta.php" method="POST">
                  <div class="btn_regitro_tarjeta" ><input type="image" src="img/btn-registrar-tarjeta.gif" /></div>
+                 
                 </form>
                 <div id="mensaje" class="mensajeOk" ></div>
             </div>

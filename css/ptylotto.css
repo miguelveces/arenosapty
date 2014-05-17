@@ -320,11 +320,11 @@ body
     border: solid green 2px;
     background-color: #ffc;
     font-size: 1em;
-    padding: 1px;
-    margin-top: 21em;
+    padding: 1px;   
     min-height:  2em;
     width: 90%;
     margin-left: 5%;
+    margin-bottom: 1em;
     padding-left: 12px;
     border: 1px solid rgb(255, 204, 51);
     font-family: arial,helvetica,clean,sans-serif;
