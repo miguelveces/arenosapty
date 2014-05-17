@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Usuarios_registrados" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5100fd19-7ba1-4882-a8d0-d9747380e13c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="403"/>
+	<queryString>
+		<![CDATA[select a.fecha_registro, a.nombre, a.apellido, a.cedula,
+a.correo_electronico, a.telefono,
+CASE a.estado WHEN 1 THEN 'activo' ELSE 'desactivado' END as 'activos' ,
+CASE a.estado WHEN 1 THEN 1 ELSE 0 END as 'inactivos'
+from usuarios a
+where a.id_rol = 1]]>
+	</queryString>
+	<field name="fecha_registro" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apellido" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cedula" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="correo_electronico" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telefono" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="activos" class="java.lang.String"/>
+	<field name="inactivos" class="java.lang.Long"/>
+	<group name="grafica">
+		<groupExpression><![CDATA[$F{inactivos}]]></groupExpression>
+		<groupHeader>
+			<band height="50"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="179"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement x="162" y="0" width="393" height="79" uuid="3812dded-5be5-43ec-adc6-1ab7f32f684a"/>
+				<imageExpression><![CDATA["C:\\wamp\\www\\ptylotto3\\ptylotto\\img\\estrellas.jpg"]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame">
+				<reportElement x="0" y="0" width="162" height="79" uuid="b6936038-0555-4b9e-9241-c1a47434499c"/>
+				<imageExpression><![CDATA["C:\\wamp\\www\\ptylotto3\\ptylotto\\img\\logo.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="73" y="0" width="415" height="35" uuid="2634c25b-673f-4576-a11b-e0c19255de21"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Reporte de Usuarios Registrados en el Sistema ]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="18" y="2" width="100" height="20" backcolor="#808080" uuid="06c237b7-6390-4f49-8c5c-1cfe1748d8d9"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="197" y="2" width="100" height="20" uuid="97240314-7c6a-4622-b2f3-f3fd75c86445"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cédula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="314" y="2" width="100" height="20" uuid="377082d1-b72d-4756-8cf5-ac28abb0fcf4"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Correo Electronico]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="2" width="100" height="20" uuid="f9290a82-5617-46e3-ad28-1dee8b9d62ff"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefono]]></text>
+			</staticText>
+			<line>
+				<reportElement x="18" y="32" width="526" height="1" uuid="a8da89e6-c365-4f61-b5aa-60d5e333e123"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="49" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="20" width="85" height="20" uuid="b237fce0-07f4-49b5-943e-27d456da6ba6"/>
+				<textElement>
+					<paragraph leftIndent="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="85" y="20" width="100" height="20" uuid="d3bdcc4e-005c-402f-a60c-61826d9a405c"/>
+				<textFieldExpression><![CDATA[$F{apellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="197" y="20" width="100" height="20" uuid="46ce3d8f-62cb-4f9e-a59f-a745a9b0e0cd"/>
+				<textFieldExpression><![CDATA[$F{cedula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="314" y="20" width="100" height="20" uuid="c81aa6b0-2d98-48d2-b22f-794bbe3038ff"/>
+				<textFieldExpression><![CDATA[$F{correo_electronico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="20" width="100" height="20" uuid="153288b0-aafd-4b26-b6f1-453be3bfb077"/>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="271" splitType="Stretch">
+			<pie3DChart>
+				<chart>
+					<reportElement x="140" y="17" width="367" height="233" uuid="b1fe71c1-e8a2-4f9e-b7ac-e3c2a557cef5"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{activos}]]></keyExpression>
+					<valueExpression><![CDATA[$V{grafica_COUNT}]]></valueExpression>
+					<labelExpression><![CDATA[$F{activos} + "=" + $V{grafica_COUNT}]]></labelExpression>
+					<otherKeyExpression><![CDATA[$F{activos}]]></otherKeyExpression>
+					<otherLabelExpression><![CDATA[$V{grafica_COUNT}]]></otherLabelExpression>
+				</pieDataset>
+				<pie3DPlot>
+					<plot/>
+					<itemLabel/>
+				</pie3DPlot>
+			</pie3DChart>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="455" y="16" width="100" height="20" uuid="dd023edc-ea8e-4816-91b3-56360546154a"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="18" y="16" width="100" height="20" uuid="bdfa2d10-9bf5-4446-b099-8613f8907e12"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="296" splitType="Stretch"/>
+	</summary>
+</jasperReport>

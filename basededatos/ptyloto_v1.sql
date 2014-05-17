@@ -2,7 +2,7 @@
 SQLyog Community Edition- MySQL GUI v8.17 
 MySQL - 5.6.12-log : Database - ptyloto
 *********************************************************************
-*/
+*/
 
 /*!40101 SET NAMES utf8 */;
 

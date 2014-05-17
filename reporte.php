@@ -10,7 +10,7 @@ include_once ('setting.php');
 
 
 
-$xml =  simplexml_load_file("report1.jrxml");
+$xml =  simplexml_load_file("usuario2.jrxml");
 
 
 $PHPJasperXML = new PHPJasperXML();
