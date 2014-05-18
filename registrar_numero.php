@@ -45,6 +45,13 @@
                     </select></div>                                        
 
                  <div> <h2 id="error"> </h2></div>
+                 <div  class="label_box_2" ><label  class="label_frm">Fecha del sorteo:</label></div>
+                 <div  class="txt_box_2" ><input type="text" name="fecha_de_sorteo" readonly="readonly"  value="<?php echo $_SESSION['fecha_del_sorteo']  ?>"   class="txt_frm" > </div> 
+                 
+                 <div  class="label_box_2" ><label  class="label_frm">Tiempor restante para el cierre de compra:</label></div>
+                 <div  class="txt_box_2" ><input type="text" name="cierre_de_compra" readonly="readonly" value="<?php echo date("Y-m-d H:i:s") ?>"   class="txt_frm" > </div> 
+                 
+                 
                 <div class="grd_box"> <?php include('clases/formularios/lista_de_numeros_comprados.php');$consultaTar = new lista_de_numeros_comprados();$consultaTar->muestra_numeros_usuario(); ?></div>
                 <div class="btn_registrar" ><input type="image" src="img/btn-aceptar.gif" value="Crear" name="crear" /></div>
                 </form>
@@ -53,7 +60,7 @@
                 </form>
                 <form name="frmtarjeta" action="registro_tarjeta.php" method="POST">
                  <div class="btn_regitro_tarjeta" ><input type="image" src="img/btn-registrar-tarjeta.gif" /></div>
-                 
+                  
                 </form>
                 <div id="mensaje" class="mensajeOk" ></div>
             </div>
