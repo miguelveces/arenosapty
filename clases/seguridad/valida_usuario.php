@@ -72,6 +72,13 @@ class valida_usuario {
                     $_SESSION['nombre'] = $row["nombre"];
                     $_SESSION['apellido'] = $row["apellido"];
                     $_SESSION['id'] = $row["id_usuario"];
+                    
+                    $obtener_fecha = $this->fecha_del_sorteo();
+                    
+                    $_SESSION['fecha_del_sorteo'] = $obtener_fecha;
+                    
+                    
+                   
                     // echo "usuario " . $_SESSION['cedula'] . "<br/>";
                     //  echo  "usuario " . $_SESSION['nombre']. "<br/>";
 
@@ -119,6 +126,41 @@ class valida_usuario {
             $auditar->insertar_auditoria("desconocido", "login", "usuarios", "Fallo la comexion a la base de datos");
         }
     }
+    
+    
+      function fecha_del_sorteo (){
+        
+        $auditar6 = new auditoria();
+        require_once('../conexion_bd/conexion.php');
+        $this->usuario = $_SESSION["usuarios"];
+        $conectado = new conexion();
+        $con_res = $conectado->conectar();
+        if (strcmp($con_res, "ok") == 0) {
+            // echo 'Conexion exitosa todo bien ';
+        
+        
+        $query_fecha_sorteto = "SELECT fecha_sorteo FROM restricciones_venta  WHERE UTC_TIMESTAMP()<= fecha_sorteo and estado=0";
+        
+        $result = mysql_query($query_fecha_sorteto);
+         if ($row = mysql_fetch_array($result)) {
+                    $fecha_del_sorteo = $row['fecha_sorteo'];
+                    
+                    echo $fecha_del_sorteo;
+                    
+                    return  $fecha_del_sorteo;
+                }
+                else{
+                      return  "";
+                }
+               
+    }else {
+            $auditar7->insertar_auditoria($_SESSION['usuarios'], "Conexion", "Base de datos", "Ocurrio un problema al intentar conectar a la base de datos");
+            $_SESSION['mensaje'] = 'Problemas de conexión';
+            $_SESSION['capitan'] = 2;
+            return  "";
+        }
+    
+    }
 
     function requerido($valor) {
         $valor = trim($valor);
@@ -137,5 +179,7 @@ class valida_usuario {
         }
         return null;
     }
+    
+    
 
 }
